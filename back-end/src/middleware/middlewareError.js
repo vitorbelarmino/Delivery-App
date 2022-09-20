@@ -17,4 +17,5 @@ const errorMiddleware = (err, _req, res, next) => {
   console.log(err);
   next();
 };
-export default errorMiddleware;
+
+module.exports = errorMiddleware;

@@ -1,7 +1,8 @@
 const express = require('express');
 require('express-async-errors');
 const cors = require('cors');
-import errorMiddleware from './middleware/middlewareError';
+const errorMiddleware = require ('../middleware/middlewareError');
+
 
 const app = express();
 app.use(express.json());
