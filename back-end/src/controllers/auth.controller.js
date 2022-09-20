@@ -2,9 +2,9 @@ require('dotenv').config();
 const authService = require('../services/auth.service');
 
 const login = async (req, res) => {
-  // const { email, password } = authService.validatePostLogin(req.body);
+  const { email, password } = authService.validatePostLogin(req.body); // joi
 
-  const { email, password} = req.body;
+  // const { email, password} = req.body;
 
   const token = await authService.validateCredentials(email, password)
 

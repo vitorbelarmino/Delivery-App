@@ -8,8 +8,7 @@ const authRouter = require('../routes/auth.router');
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(errorMiddleware);
-
 app.use('/login', authRouter);
+app.use(errorMiddleware);
 
 module.exports = app;

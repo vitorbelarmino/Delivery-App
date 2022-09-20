@@ -1,5 +1,6 @@
 const errorMiddleware = (err, _req, res, next) => {
   const { name, message } = err;
+  console.log(name);
   switch (name) {
     case 'ValidationError':
       res.status(400).json({ message });

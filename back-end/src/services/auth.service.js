@@ -17,7 +17,7 @@ const authService = {
 
     if (error) {
       const e = new Error(error.details[0].message);
-      e.name = 'invalidData';
+      e.name = 'UnauthorizedError';
       throw e;
     }
 
@@ -26,17 +26,14 @@ const authService = {
 
   validateCredentials: async (email, password) => {
     const user = await User.findOne({ where: { email, password } });
-
   
     if (!user) {
       const e = new Error('Invalid fields');
-      e.name = 'invalidData';
+      e.name = 'ValidationError';
       throw e;
     }
 
-
     const { password: pwd, ...userWithoutPassword } = user.dataValues;
-
     const token = jwtService.createToken(userWithoutPassword);
 
     return token;
