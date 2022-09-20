@@ -1,32 +1,27 @@
-const dotenv = require('dotenv/config');
-const  jwt = require( 'jsonwebtoken');
+const jwt = require('jsonwebtoken');
+require('dotenv/config');
 
+const createToken = (user) => {
+  const jwtConfig = {
+    expiresIn: '7d',
+    algorithm: 'HS256',
+  };
+  
+  const token = jwt.sign({ data: user }, process.env.SECRET , jwtConfig);
 
-const  Jwt = {
+  return token;
+};
 
-   createToken : (user) => {
-    const config = {
-      expiresIn: '7d',
-      algorithm: 'HS256',
-    };
+const validateToken = (token) => {
+  try {   
+    const { data } = jwt.verify(token, process.env.SECRET);
 
-    const secret = process.env.SECRET || 'secret';
-    const token = jwt.sign({ data: user }, secret, config);
-
-    return token;
-  },
-
-   validateToken: (token) => {
-    try {
-      const { data } = jwt.verify(token, process.env.SECRET);
-      return data;
-    } catch (_err) {
-      const e = new Error('Token must be a valid token');
-      e.name = 'UnauthorizedError';
-      throw e;
-    }
+    return data;
+  } catch (_err) {
+    const e = new Error('Expired or invalid token');
+    e.name = 'UnauthorizedError';
+    throw e;
   }
+};
 
-
-
-}
+module.exports = { createToken, validateToken };
