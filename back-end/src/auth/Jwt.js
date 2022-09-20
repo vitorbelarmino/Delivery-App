@@ -1,5 +1,5 @@
-import 'dotenv/config';
-import { sign, verify } from 'jsonwebtoken';
+const dotenv = require('dotenv/config');
+const  jwt = require( 'jsonwebtoken');
 
 
 export default class Jwt {
@@ -11,14 +11,14 @@ export default class Jwt {
     };
 
     const secret = process.env.SECRET || 'secret';
-    const token = sign({ data: user }, secret, config);
+    const token = jwt.sign({ data: user }, secret, config);
 
     return token;
   }
 
   static validateToken(token) {
     try {
-      const { data } = verify(token, process.env.SECRET);
+      const { data } = jwt.verify(token, process.env.SECRET);
       return data;
     } catch (_err) {
       const e = new Error('Token must be a valid token');
