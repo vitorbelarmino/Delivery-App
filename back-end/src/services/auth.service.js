@@ -5,6 +5,7 @@ const { msgSchema } = require('../helpers/schemas');
 
 const { User } = require('../database/models');
 
+
 const authService = {
   validatePostLogin: (params) => {
     const schema = Joi.object({
@@ -33,7 +34,7 @@ const authService = {
     }
 
 
-    const { password: pass, ...userWithoutPassword } = user.dataValues;
+    const { password: pwd, ...userWithoutPassword } = user.dataValues;
 
     const token = jwtService.createToken(userWithoutPassword);
 

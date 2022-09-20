@@ -2,9 +2,9 @@ const dotenv = require('dotenv/config');
 const  jwt = require( 'jsonwebtoken');
 
 
-export default class Jwt {
+const  Jwt = {
 
-  static createToken(user) {
+   createToken : (user) => {
     const config = {
       expiresIn: '7d',
       algorithm: 'HS256',
@@ -14,9 +14,9 @@ export default class Jwt {
     const token = jwt.sign({ data: user }, secret, config);
 
     return token;
-  }
+  },
 
-  static validateToken(token) {
+   validateToken: (token) => {
     try {
       const { data } = jwt.verify(token, process.env.SECRET);
       return data;
