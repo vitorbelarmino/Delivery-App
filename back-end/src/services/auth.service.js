@@ -2,9 +2,8 @@ require('dotenv').config();
 const Joi = require('joi');
 const jwtService = require('../auth/Jwt');
 const { msgSchema } = require('../helpers/schemas');
-
 const { User } = require('../database/models');
-
+// const { CustomError } = require('../helpers/customError');
 
 const authService = {
   validatePostLogin: (params) => {
@@ -16,6 +15,8 @@ const authService = {
     const { error, value } = schema.validate(params);
 
     if (error) {
+      // return new CustomError(200, 'sdfsfsdf')
+
       const e = new Error(error.details[0].message);
       e.name = 'UnauthorizedError';
       throw e;
@@ -26,7 +27,7 @@ const authService = {
 
   validateCredentials: async (email, password) => {
     const user = await User.findOne({ where: { email, password } });
-  
+
     if (!user) {
       const e = new Error('Invalid fields');
       e.name = 'ValidationError';
