@@ -6,14 +6,14 @@ const createToken = (user) => {
     expiresIn: '7d',
     algorithm: 'HS256',
   };
-  
-  const token = jwt.sign({ data: user }, process.env.SECRET , jwtConfig);
+
+  const token = jwt.sign({ data: user }, process.env.SECRET, jwtConfig);
 
   return token;
 };
 
 const validateToken = (token) => {
-  try {   
+  try {
     const { data } = jwt.verify(token, process.env.SECRET);
 
     return data;
