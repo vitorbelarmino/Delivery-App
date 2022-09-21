@@ -22,7 +22,7 @@ module.exports = {
         sale_date: Sequelize.literal('CURRENT_TIMESTAMP'),
         status: 'saiu pra entrega',
       }
-    ], { timestamps: true });
+    ], { timestamps: false });
   },
   down: async(queryInterface, _Sequelize) => {
     await queryInterface.bulkDelete("sales", null, {});

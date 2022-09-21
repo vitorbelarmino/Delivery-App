@@ -14,16 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING,
   },
   {
-    timestamps: true,
+    timestamps: false,
     tableName: 'sales',
-  })
+  });
+
+
   Sales.associate = (models) => {
     Sales.belongsTo(models.Users, { foreignKey: 'user_id', as: 'user'});
-    Sales.belongsTo(models.Users, { foreignKey: 'seller_id', as: 'seller'});
-    Sales.belongsToMany(models.Products, {
-      as: 'products',
-      through: models.Sales
-    })
+    Sales.belongsTo(models.Users, { foreignKey: 'seller_id', as: 'seller'});    
   };
 
   return Sales;

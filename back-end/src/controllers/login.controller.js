@@ -1,5 +1,5 @@
 require('dotenv').config();
-const loginService = require('../services/login.service');
+const {loginService, teste} = require('../services/login.service');
 const { StatusCodes } = require('http-status-codes')
 
 
@@ -9,4 +9,9 @@ const login = async (req, res) => {
   res.status(StatusCodes.OK).json({ token });
 };
 
-module.exports = { login };
+const all = async (req, res) => {
+  const result = await teste();
+  res.status(StatusCodes.OK).json(result);
+};
+
+module.exports = { login, all };
