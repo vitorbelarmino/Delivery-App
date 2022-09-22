@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/login.module.css';
 import { Button, Input } from '../../components';
+import loginService from '../../services/login.service';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -13,7 +14,16 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('handle');
+    loginService(
+      {
+        email,
+        password,
+      },
+    ).then((response) => {
+      if (response.token) {
+        console.log(response.token);
+      }
+    });
   };
 
   useEffect(() => {
