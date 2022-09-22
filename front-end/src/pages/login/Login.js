@@ -1,95 +1,87 @@
-import { useState } from 'react';
-import { Container, LogoContainer, LoginContainer } from './Login.styles';
-
-const form = {
-  login: '',
-  senha: '',
-  error: false,
-};
-
-const verifyEmail = (email) => {
-  const emailRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
-  return emailRegex.test(email);
-};
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from '../../styles/login.module.css';
+import { Button, Input } from '../../components';
 
 export default function Login() {
-  const [values, setValues] = useState(form);
+  const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [erro] = useState('');
+  const [buttonState, setButtonState] = useState(true);
 
-    setValues({
-      ...values,
-      [name]: value,
-    });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('handle');
   };
 
-  const handleSubmitBtn = (e) => {
-    e.preventDefault();
-    const verify = verifyEmail(values.login);
-    const seis = 6;
-    console.log(verify);
+  useEffect(() => {
+    function validate() {
+      if (email !== '' && password !== '') {
+        setButtonState(false);
+        return;
+      }
 
-    if (values.senha.length < seis || !verify) {
-      setValues({
-        ...values,
-        error: true,
-      });
+      // habilita o botao de login
+      setButtonState(true);
     }
-    setValues({
-      ...values,
-      error: false,
-    });
-  };
+    validate();
+  }, [email, password]);
 
   return (
-    <Container>
-      <LogoContainer>
-        <img src="logo" alt="logo" />
-      </LogoContainer>
+    <main className={ styles.main_container }>
 
-      <LoginContainer>
-        <label htmlFor="login">
-          Login
-          <input
+      <form
+        onSubmit={ handleSubmit }
+        className={ styles.form_login }
+      >
+
+        <section>
+
+          <Input
+            label="Login"
             type="text"
-            data-testid="common_login__input-email"
+            value={ email }
+            id="common_login__input-email"
             name="login"
-            value={ values.login }
-            onChange={ (e) => handleInputChange(e) }
+            onChange={ ({ target }) => setEmail(target.value) }
           />
-        </label>
 
-        <label htmlFor="senha">
-          Senha
-          <input
+          <Input
+            label="Senha"
             type="text"
+            value={ password }
             name="senha"
-            data-testid="common_login__input-password"
-            value={ values.senha }
-            onChange={ (e) => handleInputChange(e) }
+            id="common_login__input-password"
+            onChange={ ({ target }) => setPassword(target.value) }
           />
-        </label>
 
-        <button
-          onClick={ (e) => handleSubmitBtn(e) }
-          type="button"
-          data-testid="common_login__button-login"
-        >
-          LOGIN
-        </button>
+          <Button
+            label="LOGIN"
+            typeButton="submit"
+            id="common_login__button-login"
+            disabled={ buttonState }
+            onClick={ () => {} }
+          />
 
-        <button type="button" data-testid="common_login__button-register">
-          Ainda não tenho conta
-        </button>
-      </LoginContainer>
-      {values.error ? (
-        <span data-testid="common_login__element-invalid-email">
-          Email ou senha inválidos.
-        </span>
-      ) : (
-        ''
-      )}
-    </Container>
+          <Button
+            label="Ainda não tenho conta"
+            id="common_login__button-register"
+            onClick={ () => navigate('/register') }
+          />
+
+        </section>
+
+        {erro ? (
+          <span data-testid="common_login__element-invalid-email">
+            {erro}
+          </span>
+        ) : (
+          ''
+        )}
+
+      </form>
+    </main>
   );
 }
