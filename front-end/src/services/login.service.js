@@ -1,4 +1,5 @@
 // import { useEffect, useState } from 'react';
+import { saveToken } from './login.storage';
 
 async function useLogin(data) {
   // const [login] = useState([]);
@@ -12,7 +13,9 @@ async function useLogin(data) {
     const END_POINT = 'http://localhost:3001/login';
     const response = await fetch(END_POINT, { ...config });
     const result = await response.json();
-    console.log(result);
+    if (result.token) {
+      saveToken(result.token);
+    }
     return result;
   } catch (error) {
     console.log(error);

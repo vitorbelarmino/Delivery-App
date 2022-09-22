@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/login.module.css';
 import { Button, Input } from '../../components';
+// rota de acesso à rota login
 import loginService from '../../services/login.service';
+// funcao para validar o e-mail
+import validEmail from '../../helper/validEmail';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -28,7 +31,8 @@ export default function Login() {
 
   useEffect(() => {
     function validate() {
-      if (email !== '' && password !== '') {
+      const minNumber = 6;
+      if (validEmail && password.length > minNumber) {
         setButtonState(false);
         return;
       }
