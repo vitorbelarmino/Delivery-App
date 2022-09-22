@@ -1,16 +1,17 @@
 const Joi = require('joi');
+
 const msgSchema = {
   email: {
     'any.required': 'email is required',
-    'string.email': 'invalid email format'
+    'string.email': 'invalid email format',
   },
   Password: {
     'any.required': 'Password is required',
-    'string.min': 'Password must be greater than 6'
+    'string.min': 'Password must be greater than 6',
   },
   defaultMsg: {
-    'string.base': '"fields" must be a string', 
-    'string.empty': 'Some required fields are missin2', 
+    'string.base': '"fields" must be a string',
+    'string.empty': 'Some required fields are missin2',
     'any.required': 'Some required fields are missin3',
   },
 };
@@ -21,5 +22,5 @@ const loginSchema = Joi.object({
 });
 
 module.exports = {
-  loginSchema
+  loginSchema,
 };

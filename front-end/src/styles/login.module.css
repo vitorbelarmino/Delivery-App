@@ -1,0 +1,78 @@
+.main_container {
+  align-items: center;
+  background-image: url();
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
+
+.form_login {
+  align-items: center;
+  background-color: white;
+  box-shadow: 5px 5px 15px 2px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0.8;
+  width: 350px;
+}
+
+.form_input {
+  display: flex;
+  flex-direction: column;
+}
+
+.form_input label {
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+.form_login h1 {
+  font-family: 'Libre Barcode 30 Extended Text' , cursive;
+}
+
+input, input:not( [ type = 'button' ] ), .form_login select { 
+  border: 1px solid gray;
+  font-size: 18px;
+  height: 30px;
+  margin-top: 12px;
+  padding: 5px;
+  width: 95%;
+}
+
+.form_login button {
+  background-color: #036b52;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  height: 60px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.form_login button:nth-child(even)  {
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: #036b52;
+  cursor: pointer;
+  font-size: 20px;
+  height: 60px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.form_login button:disabled {
+  background-color: lightgray;
+}
+
+.form_login button:hover {
+  background-color: #5c8e71;
+  border-color: white;
+  color: white;
+}
