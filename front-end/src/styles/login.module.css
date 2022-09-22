@@ -1,6 +1,6 @@
 .main_container {
   align-items: center;
-  background-image: url();
+  background-image: 'url()';
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -34,7 +34,7 @@
   font-family: 'Libre Barcode 30 Extended Text' , cursive;
 }
 
-input, input:not( [ type = 'button' ] ), .form_login select { 
+input, input:not( [ type = 'button' ] ), .form_login select {
   border: 1px solid gray;
   font-size: 18px;
   height: 30px;
@@ -55,7 +55,7 @@ input, input:not( [ type = 'button' ] ), .form_login select {
   width: 100%;
 }
 
-.form_login button:nth-child(even)  {
+.form_login button:nth-child( even ) {
   background-color: transparent;
   border: 1px solid black;
   border-radius: 5px;
