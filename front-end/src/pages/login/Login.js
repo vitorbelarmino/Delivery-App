@@ -88,7 +88,10 @@ export default function Login() {
         </section>
 
         {erro ? (
-          <span data-testid="common_login__element-invalid-email">
+          <span
+            data-testid="common_login__element-invalid-email"
+            className={ styles.erro_login }
+          >
             {erro}
           </span>
         ) : (
