@@ -50,7 +50,7 @@ export default function Login() {
 
           <Input
             label="Senha"
-            type="text"
+            type="password"
             value={ password }
             name="senha"
             id="common_login__input-password"

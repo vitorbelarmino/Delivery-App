@@ -44,9 +44,9 @@ input, input:not( [ type = 'button' ] ), .form_login select {
 }
 
 .form_login button {
-  background-color: #299488;
+  background-color: #036b52;
   border: none;
-  border-radius: 1px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 20px;
   height: 60px;
@@ -55,10 +55,11 @@ input, input:not( [ type = 'button' ] ), .form_login select {
   width: 100%;
 }
 
-button {
-  background-color: red;
-  border: none;
-  border-radius: 1px;
+.form_login button:nth-child(even)  {
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: #036b52;
   cursor: pointer;
   font-size: 20px;
   height: 60px;
@@ -72,5 +73,6 @@ button {
 
 .form_login button:hover {
   background-color: #5c8e71;
+  border-color: white;
   color: white;
 }
