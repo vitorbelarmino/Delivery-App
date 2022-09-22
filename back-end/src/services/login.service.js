@@ -6,12 +6,14 @@ const { CustomError } = require('../helpers/customError');
 
 const loginService = async (email, password) => {
   const user = await Users.findOne({ where: { email, password } });
+
   if (!user) throw new CustomError(StatusCodes.NOT_FOUND, 'Not found');
 
   const { password: pwd, ...userWithoutPassword } = user.dataValues;
   const token = createToken(userWithoutPassword);
   return token;
 };
+
 
 const teste = async () => {
   try {
@@ -30,5 +32,6 @@ const teste = async () => {
 
   return [];
 };
+
 
 module.exports = { loginService, teste };
