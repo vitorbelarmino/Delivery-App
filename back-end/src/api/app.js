@@ -1,8 +1,8 @@
 const express = require('express');
 require('express-async-errors');
 const cors = require('cors');
-const errorMiddleware = require('../middleware/middlewareError');
-const {globalError} = require ('../middleware/globalError');
+// const errorMiddleware = require('../middleware/middlewareError');
+const { globalError } = require('../middleware/globalError');
 const authRouter = require('../routes/login.router');
 
 const app = express();

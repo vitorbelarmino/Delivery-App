@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 require('dotenv/config');
 
-
 const createToken = (user) => {
   const jwtConfig = {
     expiresIn: '7d',

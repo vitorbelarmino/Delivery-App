@@ -1,4 +1,4 @@
-const { CustomError } = require('../helpers/customError')
+const { CustomError } = require('../helpers/customError');
 
 class GlobalError {
   constructor(defaultStatus = 500) {
