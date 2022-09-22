@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { StatusCodes } = require('http-status-codes');
 const { loginService } = require('../services/login.service');
 

@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { StatusCodes } = require('http-status-codes');
 const { createToken } = require('../auth/Jwt');
 const { Users } = require('../database/models');
@@ -14,4 +13,4 @@ const loginService = async (email, password) => {
   return token;
 };
 
-module.exports = { loginService};
+module.exports = { loginService };
