@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/login.module.css';
 import { Button, Input } from '../../components';
-// rota de acesso à rota login
+// rota de acesso à rota
 import loginService from '../../services/login.service';
 // funcao para validar o e-mail
 import validEmail from '../../helper/validEmail';
@@ -32,12 +32,12 @@ export default function Login() {
   useEffect(() => {
     function validate() {
       const minNumber = 6;
-      if (validEmail && password.length > minNumber) {
+      if (validEmail(email) && password.length >= minNumber) {
         setButtonState(false);
+        // habilita o botao de login
         return;
       }
 
-      // habilita o botao de login
       setButtonState(true);
     }
     validate();
