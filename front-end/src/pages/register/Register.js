@@ -103,7 +103,7 @@ export default function Register() {
 
         {erro ? (
           <span
-            data-testid="common_register__element-invalid_registe"
+            data-testid="common_register__element-invalid_register"
             className={ styles.erro_login }
           >
             {erro}

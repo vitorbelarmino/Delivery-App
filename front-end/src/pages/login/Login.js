@@ -27,6 +27,7 @@ export default function Login() {
         setErro(response.error);
       } else {
         setErro();
+        navigate('/customer/products');
       }
     });
   };
