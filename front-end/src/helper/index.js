@@ -1,3 +1,3 @@
-import { validEmail, validPassword } from './validFields';
+import { validEmail, validPassword, validName } from './validFields';
 
-export { validEmail, validPassword };
+export { validName, validEmail, validPassword };

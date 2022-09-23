@@ -7,3 +7,8 @@ export const validPassword = (password, quantity) => {
   const result = password.length >= quantity;
   return result;
 };
+
+export const validName = (name, quantity) => {
+  const result = name.length >= quantity;
+  return result;
+};

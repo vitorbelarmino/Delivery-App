@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/login.module.css';
 import { Button, Input } from '../../components';
 // rota de acesso à rota
 import loginService from '../../services/login.service';
 // funcao para validar o e-mail
-import { validEmail, validPassword } from '../../helper/validFields';
+import { validEmail, validPassword, validName } from '../../helper/validFields';
 
-export default function Login() {
-  const navigate = useNavigate();
+export default function Register() {
+  // const navigate = useNavigate();
 
+  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [erro, setErro] = useState('');
@@ -34,7 +35,11 @@ export default function Login() {
   useEffect(() => {
     function validate() {
       const minNumber = 6;
-      if (validEmail(email) && validPassword(password, minNumber)) {
+      const minName = 12;
+      if (
+        validEmail(email)
+        && validPassword(password, minNumber)
+        && validName(nome, minName)) {
         // habilita o botao de login
         setButtonState(false);
         return;
@@ -43,7 +48,7 @@ export default function Login() {
       setButtonState(true);
     }
     validate();
-  }, [email, password]);
+  }, [nome, email, password]);
 
   return (
     <main className={ styles.main_container }>
@@ -54,12 +59,22 @@ export default function Login() {
       >
 
         <section>
-          <h1>NOME APP</h1>
+          <h1>Cadastro</h1>
+
           <Input
-            label="Login"
+            label="Nome"
+            type="text"
+            value={ nome }
+            id="common_register__input-name"
+            name="login"
+            onChange={ ({ target }) => setNome(target.value) }
+          />
+
+          <Input
+            label="Email"
             type="text"
             value={ email }
-            id="common_login__input-email"
+            id="common_register__input-email"
             name="login"
             onChange={ ({ target }) => setEmail(target.value) }
           />
@@ -69,29 +84,23 @@ export default function Login() {
             type="password"
             value={ password }
             name="senha"
-            id="common_login__input-password"
+            id="common_register__input-password"
             onChange={ ({ target }) => setPassword(target.value) }
           />
 
           <Button
-            label="LOGIN"
+            label="CADASTRAR"
             typeButton="submit"
-            id="common_login__button-login"
+            id="common_register__button-register"
             disabled={ buttonState }
             onClick={ () => {} }
-          />
-
-          <Button
-            label="Ainda não tenho conta"
-            id="common_login__button-register"
-            onClick={ () => navigate('/register') }
           />
 
         </section>
 
         {erro ? (
           <span
-            data-testid="common_login__element-invalid-email"
+            data-testid="common_register__element-invalid_registe"
             className={ styles.erro_login }
           >
             {erro}
