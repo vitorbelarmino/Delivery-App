@@ -18,5 +18,7 @@ export const saveToken = (token) => {
 };
 
 export const saveDataUser = (data) => {
-  localStorage.setItem(DATA_USER, JSON.stringify(data));
+  const result = dataUser();
+  result.push(data);
+  localStorage.setItem(DATA_USER, JSON.stringify(result));
 };

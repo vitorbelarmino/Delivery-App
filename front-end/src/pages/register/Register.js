@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/login.module.css';
 import { Button, Input } from '../../components';
 // rota de acesso à rota
-import loginService from '../../services/login.service';
+import loginService from '../../services/register.service';
 // funcao para validar o e-mail
 import { validEmail, validPassword, validName } from '../../helper/validFields';
 
 export default function Register() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -20,14 +20,17 @@ export default function Register() {
     event.preventDefault();
     loginService(
       {
+        name: nome,
         email,
         password,
+        role: 'customer',
       },
     ).then((response) => {
       if (response.error) {
         setErro(response.error);
       } else {
         setErro();
+        navigate('/customer/products');
       }
     });
   };
@@ -100,7 +103,7 @@ export default function Register() {
 
         {erro ? (
           <span
-            data-testid="common_register__element-invalid_registe"
+            data-testid="common_register__element-invalid_register"
             className={ styles.erro_login }
           >
             {erro}
