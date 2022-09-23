@@ -1,5 +1,5 @@
 export default function customProducts() {
   return (
-    <div />
+    <div>Customer Products</div>
   );
 }
