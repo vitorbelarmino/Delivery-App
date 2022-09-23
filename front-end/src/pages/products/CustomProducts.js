@@ -2,12 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Header from '../../components/group/Header';
-// import useRequestExploreIngredients from '../hooks/useRequestExploreIngredients';
+import useProducts from '../../hooks/useProduct';
 import styles from '../../styles/login.module.css';
 
 function CustomProducts() {
   const navigate = useNavigate();
-  const data = [];
+  const [data] = useProducts('customer/products');
 
   return (
     <section className={ styles.container_products }>
