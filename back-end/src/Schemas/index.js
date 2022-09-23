@@ -13,6 +13,23 @@ const msgSchema = {
     'any.required': 'Password is required',
     'string.min': 'Password must be greater than 6',
   },
+
+  SellerName: {
+    'any.required': 'Seller is required',
+  },
+  UserName: {
+    'any.required': 'UserName is required',
+  },
+
+  price: {
+    'any.required': 'Price is required',
+  },
+  address: {
+    'any.required': 'Address is required',
+  },
+  number: {
+    'any.required': 'Address number is required',
+  },
   defaultMsg: {
     'string.base': '"fields" must be a string',
     'string.empty': 'Some required fields are missin2',
@@ -32,7 +49,16 @@ const registerSchema = Joi.object({
   role: Joi.string(),
 });
 
+const saleSchema = Joi.object({
+  userName: Joi.string().min(12).required().messages(msgSchema.UserName),
+  SellerName: Joi.string().min(12).required().messages(msgSchema.SellerName),
+  price: Joi.number().required().messages(msgSchema.price),
+  address: Joi.string().required().messages(msgSchema.address),
+  number: Joi.number().required().messages(msgSchema.number),
+}); 
+
 module.exports = {
   loginSchema,
   registerSchema,
+  saleSchema,
 };
