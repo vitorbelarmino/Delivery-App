@@ -43,7 +43,7 @@ input, input:not( [ type = 'button' ] ), .form_login select {
   width: 95%;
 }
 
-.form_login button {
+.form_login button:nth-child( odd ) {
   background-color: #036b52;
   border: none;
   border-radius: 5px;
@@ -63,9 +63,11 @@ input, input:not( [ type = 'button' ] ), .form_login select {
   cursor: pointer;
   font-size: 20px;
   height: 60px;
+  margin-bottom: 20px;
   margin-top: 20px;
   width: 100%;
 }
+
 
 .form_login button:disabled {
   background-color: lightgray;
