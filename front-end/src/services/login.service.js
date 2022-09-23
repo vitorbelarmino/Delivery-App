@@ -1,4 +1,3 @@
-// import { useEffect, useState } from 'react';
 import { saveToken } from './login.storage';
 
 async function useLogin(data) {
