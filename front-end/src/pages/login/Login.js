@@ -12,7 +12,7 @@ export default function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [erro] = useState('');
+  const [erro, setErro] = useState('');
   const [buttonState, setButtonState] = useState(true);
 
   const handleSubmit = (event) => {
@@ -23,8 +23,10 @@ export default function Login() {
         password,
       },
     ).then((response) => {
-      if (response.token) {
-        console.log(response.token);
+      if (response.error) {
+        setErro(response.error);
+      } else {
+        setErro();
       }
     });
   };
