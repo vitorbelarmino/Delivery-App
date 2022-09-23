@@ -11,6 +11,7 @@ const sale = require('../controllers/sales.controller');
 router.post('/login', validateLogin, loginController)
   .post('/register', validateRegister, registerController)
   .get('/customer/products', productsController)
-  .post('/sale', validateSale, sale.createSale);
+  .post('/sale', validateSale, sale.createSale)
+  .get('/sale/:id', sale.saleById);
 
 module.exports = router;

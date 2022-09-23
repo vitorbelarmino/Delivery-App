@@ -19,6 +19,16 @@ const createSale = async (sale) => {
   return newSale;
 };
 
+const saleById = async (id) => {
+  console.log(id);
+
+  const sale = await Sales.findOne({ where: { id } });
+  console.log('oi');
+  if (!sale) throw new CustomError(StatusCodes.NOT_FOUND, 'Venda não encontrada');
+  return sale;
+};
+
 module.exports = {
   createSale,
+  saleById,
 };

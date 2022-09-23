@@ -21,9 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       field: 'delivery_number'
     },
-    sale_date: {
+    saleDate: {
       type: DataTypes.DATE,
-      field: 'saleDate'
+      field: 'sale_date'
     },
     status: {
       type: DataTypes.STRING,
