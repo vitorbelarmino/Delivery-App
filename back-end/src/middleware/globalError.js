@@ -1,7 +1,7 @@
 const { CustomError } = require('../helpers/customError');
 
 class GlobalError {
-  constructor(defaultStatus = 500) {
+  constructor(defaultStatus) {
     this.defaultStatus = defaultStatus;
   }
 
@@ -9,7 +9,7 @@ class GlobalError {
     if (error instanceof CustomError) {     
       return response.status(error.status).json({ error: error.message });
     }
-    console.log(this.defaultStatus);
+    console.log('globalError', this.defaultStatus);
     return response.status(500).json({ error: error.message });
   }
 }
