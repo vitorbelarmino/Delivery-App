@@ -8,6 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(router);
+app.use('/images', express.static('public/images'));
 
 app.use(globalError.handle);
 
