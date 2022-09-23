@@ -5,7 +5,7 @@ import { Button, Input } from '../../components';
 // rota de acesso à rota
 import loginService from '../../services/login.service';
 // funcao para validar o e-mail
-import validEmail from '../../helper/validEmail';
+import { validEmail, validPassword } from '../../helper/validFields';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -34,9 +34,9 @@ export default function Login() {
   useEffect(() => {
     function validate() {
       const minNumber = 6;
-      if (validEmail(email) && password.length >= minNumber) {
-        setButtonState(false);
+      if (validEmail(email) && validPassword(password, minNumber)) {
         // habilita o botao de login
+        setButtonState(false);
         return;
       }
 
