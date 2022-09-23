@@ -9,7 +9,8 @@ class GlobalError {
     if (error instanceof CustomError) {     
       return response.status(error.status).json({ error: error.message });
     }
-    return response.status(this.defaultStatus).json({ error: error.message });
+    console.log(this.defaultStatus);
+    return response.status(500).json({ error: error.message });
   }
 }
 const globalError = new GlobalError();
