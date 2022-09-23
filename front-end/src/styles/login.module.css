@@ -76,3 +76,8 @@ input, input:not( [ type = 'button' ] ), .form_login select {
   border-color: white;
   color: white;
 }
+
+.erro_login {
+  color: red;
+  margin-bottom: 10px;
+}
