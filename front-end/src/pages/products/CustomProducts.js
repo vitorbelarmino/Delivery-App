@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import converteEmReal from '../../helper/moneyConverter';
 
 import Header from '../../components/group/Header';
 import Quantity from '../../components/group/Quantity';
@@ -7,7 +6,6 @@ import useProducts from '../../hooks/useProduct';
 import styles from '../../styles/products.module.css';
 
 function CustomProducts() {
-  //  const navigate = useNavigate();
   const [data] = useProducts('customer/products');
 
   return (
@@ -24,7 +22,7 @@ function CustomProducts() {
               <p
                 data-testid={ `customer_products__element-card-price-${item.id}` }
               >
-                {item.price}
+                {converteEmReal(item.price)}
 
               </p>
               <img
