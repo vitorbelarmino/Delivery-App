@@ -61,7 +61,7 @@ function CustomProducts() {
         }
       </section>
       {/*  <Footer /> */}
-      <aside><p>{total}</p></aside>
+      <aside><p>{`Ver Carinho: R$ ${total}`}</p></aside>
     </section>
   );
 }

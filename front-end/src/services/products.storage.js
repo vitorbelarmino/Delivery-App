@@ -35,5 +35,5 @@ export const getTotal = () => {
     return subtotal;
   }, 0);
 
-  return total;
+  return total.toFixed(2);
 };

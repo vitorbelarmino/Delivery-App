@@ -110,8 +110,9 @@ aside {
 aside p {
   background-color: #036b52;
   border-radius: 5px;
+  border: 1px solid yellow;
   color: white;
   font-weight: 600;
-  margin-right: 10%;
+  margin-right: 2%;
   padding: 20px;
 }
