@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/header.module.css';
 import { getNameUser } from '../../services/login.storage';
@@ -38,10 +37,5 @@ function Header() {
     </nav>
   );
 }
-
-Header.propTypes = {
-  title: PropTypes.string,
-  showSearch: PropTypes.bool,
-}.isRequired;
 
 export default Header;

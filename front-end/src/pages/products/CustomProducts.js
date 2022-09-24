@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Header from '../../components/group/Header';
+import Quantity from '../../components/group/Quantity';
 import useProducts from '../../hooks/useProduct';
-import styles from '../../styles/login.module.css';
+import styles from '../../styles/products.module.css';
 
 function CustomProducts() {
-  const navigate = useNavigate();
+  //  const navigate = useNavigate();
   const [data] = useProducts('customer/products');
 
   return (
@@ -14,26 +15,38 @@ function CustomProducts() {
       <Header />
       <section className={ styles.card_container }>
         {
-          data && data.map(({ url, name }, index) => (
+          data && data.map((item) => (
             <div
-              key={ index }
+              key={ item.id }
               className={ styles.card }
-              data-testid={ `${index}-ingredient-card` }
               role="presentation"
-              onClick={ () => {
-                navigate('/foods');
-              } }
             >
-              <img
-                src={ url }
-                alt={ `${strIngredient}` }
-                data-testid={ `${index}-card-img` }
-              />
-              <h3
-                data-testid={ `${index}-card-name` }
+              <p
+                data-testid={ `customer_products__element-card-price-${item.id}` }
               >
-                {name}
-              </h3>
+                {item.price}
+
+              </p>
+              <img
+                src={ item.url_image }
+                alt={ `${item.name}` }
+                data-testid={ `customer_products__img-card-bg-image-${item.id}` }
+                className={ styles.photo_product }
+              />
+
+              <section>
+                <span className={ styles.div_quantity }>
+                  <h4
+                    data-testid={ `customer_products__element-card-title-${item.id}` }
+                  >
+                    {item.name}
+                  </h4>
+                </span>
+                <Quantity
+                  key={ item.id }
+                  { ...item }
+                />
+              </section>
             </div>
           ))
         }
