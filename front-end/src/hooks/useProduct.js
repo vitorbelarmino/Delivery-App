@@ -10,7 +10,6 @@ function useProducts(link) {
     const getItems = async () => {
       try {
         const allProducts = await request(link);
-        console.log(allProducts);
         setData(allProducts);
       } catch (error) {
         console.log(error);

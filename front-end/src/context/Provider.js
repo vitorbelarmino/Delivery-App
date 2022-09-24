@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import context from '.';
 import '../App.css';
@@ -6,9 +6,10 @@ import '../App.css';
 function Provider({ children }) {
   const [products, setProducts] = useState([]);
 
-  const contextValue = React.useMemo(() => ({
-    products, setProducts,
-  }), [products]);
+  const contextValue = useMemo(() => (
+    {
+      products, setProducts,
+    }), [products, setProducts]);
 
   return (
     <context.Provider value={ contextValue }>

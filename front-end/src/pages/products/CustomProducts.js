@@ -1,12 +1,23 @@
+import { useState, useEffect, useContext } from 'react';
 import converteEmReal from '../../helper/moneyConverter';
+import context from '../../context/index';
 
 import Header from '../../components/group/Header';
 import Quantity from '../../components/group/Quantity';
 import useProducts from '../../hooks/useProduct';
 import styles from '../../styles/products.module.css';
+import { getTotal } from '../../services/products.storage';
 
 function CustomProducts() {
   const [data] = useProducts('customer/products');
+  const { products } = useContext(context);
+
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const result = getTotal();
+    setTotal(result);
+  }, [products]);
 
   return (
     <section className={ styles.container_products }>
@@ -50,6 +61,7 @@ function CustomProducts() {
         }
       </section>
       {/*  <Footer /> */}
+      <aside><p>{total}</p></aside>
     </section>
   );
 }

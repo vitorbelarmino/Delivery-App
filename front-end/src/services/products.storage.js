@@ -26,3 +26,14 @@ export const removeProduct = (item) => {
   }
   localStorage.setItem(DATA_PRODUCT, JSON.stringify(products));
 };
+
+export const getTotal = () => {
+  const products = dataProducts();
+  const total = products.reduce((concat, item) => {
+    const subtotal = concat + (item.price * item.qtd);
+
+    return subtotal;
+  }, 0);
+
+  return total;
+};

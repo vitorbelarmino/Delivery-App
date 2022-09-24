@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { FaPlus, FaMinus } from 'react-icons/fa';
+import context from '../../context/index';
 import styles from '../../styles/products.module.css';
 import {
+  dataProducts,
   saveProducts,
   removeProduct,
-  dataProducts } from '../../services/products.storage';
+} from '../../services/products.storage';
 
 function Quantity({ id, name, price, url_image: image }) {
+  const { setProducts } = useContext(context);
   const [quantity, setQuantity] = useState(0);
+
+  const localProducts = dataProducts().find((p) => p.id === id);
+
   const item = {
     id,
     name,
@@ -21,6 +27,7 @@ function Quantity({ id, name, price, url_image: image }) {
   const changePlus = () => {
     setQuantity((prev) => prev + 1);
     saveProducts(item);
+    setProducts(dataProducts);
   };
 
   const changeMinus = () => {
@@ -33,6 +40,7 @@ function Quantity({ id, name, price, url_image: image }) {
     });
 
     removeProduct(item);
+    setProducts(dataProducts);
   };
 
   return (
@@ -47,7 +55,7 @@ function Quantity({ id, name, price, url_image: image }) {
       <span
         data-testid="shopping-cart-product-quantity"
       >
-        { quantity }
+        { localProducts ? localProducts.qtd : quantity }
 
       </span>
 

@@ -3,6 +3,7 @@
   background-color: white;
   color: white;
   display: flex;
+  flex-wrap: wrap;
   position: fixed;
   top: 0;
   width: 100%;

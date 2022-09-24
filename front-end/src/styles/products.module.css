@@ -96,3 +96,22 @@
 .btn_quantity_min:hover {
   background-color: rgb(27, 185, 61);
 }
+
+aside {
+  align-items: center;
+  bottom: 50px;
+  display: flex;
+  height: 50px;
+  justify-content: flex-end; 
+  width: 100%;
+  position: fixed;
+}
+
+aside p {
+  background-color: #036b52;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  margin-right: 10%;
+  padding: 20px;
+}
