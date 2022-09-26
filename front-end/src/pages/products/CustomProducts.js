@@ -62,7 +62,7 @@ function CustomProducts() {
       </section>
       {/*  <Footer /> */}
       <aside data-testid="customer_products__checkout-bottom-value">
-        <p>{`Ver Carinho: R$ ${total}`}</p>
+        <p>{`Ver Carrinho: R$ ${converteEmReal(total)}`}</p>
 
       </aside>
     </section>
