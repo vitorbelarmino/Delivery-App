@@ -84,9 +84,13 @@ aside p {
   width: 100%;
 }
 
-.component_quantity span {
+.component_quantity input {
   font-size: 20px;
   font-weight: 600;
+  height: 20px;
+  margin-top: 1px;
+  text-align: center;
+  width: 50px;
 }
 
 .btn_quantity_max, .btn_quantity_min {

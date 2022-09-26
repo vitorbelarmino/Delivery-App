@@ -1,4 +1,4 @@
-const DATA_USER = 'data_user';
+const DATA_USER = 'user';
 const TOKEN = 'token';
 export const dataUser = () => (JSON.parse(localStorage.getItem(DATA_USER))) || {};
 export const tokenUser = () => (JSON.parse(localStorage.getItem(TOKEN))) || { token: '' };

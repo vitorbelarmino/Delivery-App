@@ -35,7 +35,7 @@ function Header() {
         label="SAIR"
         typeButton="button"
         id="customer_products__element-navbar-link-logout"
-        onClick={ () => navigate('/logout') }
+        onClick={ () => { localStorage.clear('user'); navigate('/login'); } }
       />
 
     </nav>

@@ -57,6 +57,7 @@ function Quantity({ id, name, price, url_image: image }) {
       <input
         data-testid={ `customer_products__input-card-quantity-${id}` }
         value={ localProducts ? localProducts.qtd : quantity }
+        onChange={ () => {} }
       />
 
       <Button

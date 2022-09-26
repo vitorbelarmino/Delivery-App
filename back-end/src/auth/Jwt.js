@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 require('dotenv/config');
+const jwtKey = require('fs').readFileSync('./jwt.evaluation.key', { encoding: 'utf-8' });
 
 const createToken = (user) => {
   const jwtConfig = {
@@ -7,14 +8,14 @@ const createToken = (user) => {
     algorithm: 'HS256',
   };
 
-  const token = jwt.sign({ data: user }, process.env.SECRET, jwtConfig);
+  const token = jwt.sign({ data: user }, jwtKey, jwtConfig);
 
   return token;
 };
 
 const validateToken = (token) => {
   try {
-    const { data } = jwt.verify(token, process.env.SECRET);
+    const { data } = jwt.verify(token, jwtKey);
 
     return data;
   } catch (_err) {
