@@ -9,7 +9,7 @@ class Button extends Component {
     console.log(addClass);
     return (
       <button
-        type={ typeButton === ' ' ? 'button' : 'submit' }
+        type={ typeButton === 'button' ? 'button' : 'submit' }
         onClick={ onClick }
         disabled={ disabled }
         value={ value }

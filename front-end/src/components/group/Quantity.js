@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { FaPlus, FaMinus } from 'react-icons/fa';
+// import { FaPlus, FaMinus } from 'react-icons/fa';
 import context from '../../context/index';
 import styles from '../../styles/products.module.css';
 import {
@@ -8,6 +8,7 @@ import {
   saveProducts,
   removeProduct,
 } from '../../services/products.storage';
+import Button from '../Button';
 
 function Quantity({ id, name, price, url_image: image }) {
   const { setProducts } = useContext(context);
@@ -46,23 +47,23 @@ function Quantity({ id, name, price, url_image: image }) {
   return (
     <div className={ styles.component_quantity }>
 
-      <FaMinus
+      <Button
+        type="button"
+        label="-"
         className={ styles.btn_quantity_max }
-        id={ id }
-        data-testid="product-decrease-quantity"
+        id={ `customer_products__button-card-rm-item-${id}` }
         onClick={ () => changeMinus() }
       />
-      <span
-        data-testid="shopping-cart-product-quantity"
-      >
-        { localProducts ? localProducts.qtd : quantity }
+      <input
+        data-testid={ `customer_products__input-card-quantity-${id}` }
+        value={ localProducts ? localProducts.qtd : quantity }
+      />
 
-      </span>
-
-      <FaPlus
+      <Button
+        type="button"
+        label="+"
         className={ styles.btn_quantity_min }
-        data-testid="product-increase-quantity"
-        id={ id }
+        id={ `customer_products__button-card-add-item-${id}` }
         onClick={ () => changePlus() }
       />
 
