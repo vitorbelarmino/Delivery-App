@@ -4,7 +4,7 @@ import './App.css';
 import { Home } from './pages/Home';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
-import CustomProducts from './pages/products/customProducts';
+import CustomProducts from './pages/products/CustomProducts';
 
 function App() {
   return (

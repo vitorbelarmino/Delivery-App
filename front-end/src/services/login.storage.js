@@ -1,6 +1,6 @@
 const DATA_USER = 'data_user';
 const TOKEN = 'token';
-export const dataUser = () => (JSON.parse(localStorage.getItem(DATA_USER))) || [];
+export const dataUser = () => (JSON.parse(localStorage.getItem(DATA_USER))) || {};
 export const tokenUser = () => (JSON.parse(localStorage.getItem(TOKEN))) || { token: '' };
 
 export const getToken = () => {
@@ -18,7 +18,13 @@ export const saveToken = (token) => {
 };
 
 export const saveDataUser = (data) => {
-  const result = dataUser();
-  result.push(data);
-  localStorage.setItem(DATA_USER, JSON.stringify(result));
+  localStorage.setItem(DATA_USER, JSON.stringify(data));
+};
+
+export const getNameUser = () => {
+  const data = dataUser();
+  if (data !== undefined) {
+    return data.name;
+  }
+  return '';
 };
