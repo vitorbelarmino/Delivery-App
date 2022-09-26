@@ -10,18 +10,17 @@ import {
 } from '../../services/products.storage';
 import Button from '../Button';
 
-function Quantity({ id, name, price, url_image: image }) {
+function Quantity({ id, name, price /* url_image: image */ }) {
   const { setProducts } = useContext(context);
   const [quantity, setQuantity] = useState(0);
 
   const localProducts = dataProducts().find((p) => p.id === id);
 
   const item = {
-    id,
+    productId: id,
     name,
-    price,
-    image,
-    qtd: 1,
+    unitPrice: price,
+    quantity: 1,
 
   };
 
