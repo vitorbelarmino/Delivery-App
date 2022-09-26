@@ -13,7 +13,15 @@ const saleById = async (req, res) => {
   res.status(StatusCodes.OK).json(sale);
 };
 
+const statusUpdate = async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+  await saleService.statusUpdate(Number(id), status);
+  res.status(StatusCodes.OK).end();
+};
+
 module.exports = {
   createSale,
   saleById,
+  statusUpdate,
 };

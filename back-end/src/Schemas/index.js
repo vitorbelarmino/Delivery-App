@@ -30,6 +30,10 @@ const msgSchema = {
   number: {
     'any.required': 'Address number is required',
   },
+  status: {
+    'any.required': 'status is required',
+    'any.only': 'tipo de status invalido',
+  },
   defaultMsg: {
     'string.base': '"fields" must be a string',
     'string.empty': 'Some required fields are missin2',
@@ -55,10 +59,16 @@ const saleSchema = Joi.object({
   price: Joi.number().required().messages(msgSchema.price),
   address: Joi.string().required().messages(msgSchema.address),
   number: Joi.number().required().messages(msgSchema.number),
-}); 
+});
+
+const statusSchema = Joi.object({
+  status: Joi.string()
+  .required().valid('Pendente', 'Preparando', 'Em Trânsito', 'Entregue').messages(msgSchema.status),
+});
 
 module.exports = {
   loginSchema,
   registerSchema,
   saleSchema,
+  statusSchema,
 };
