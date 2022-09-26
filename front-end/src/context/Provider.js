@@ -5,11 +5,15 @@ import '../App.css';
 
 function Provider({ children }) {
   const [products, setProducts] = useState([]);
+  const [activePage, setActivePage] = useState('PRODUTOS');
 
   const contextValue = useMemo(() => (
     {
-      products, setProducts,
-    }), [products, setProducts]);
+      products,
+      setProducts,
+      activePage,
+      setActivePage,
+    }), [products, setProducts, activePage, setActivePage]);
 
   return (
     <context.Provider value={ contextValue }>

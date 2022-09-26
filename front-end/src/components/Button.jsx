@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styles from '../styles/header.module.css';
 
 class Button extends Component {
   render() {
     const { typeButton = 'button', label = '', onClick, disabled = false,
-      id = '', value = '', className = '', img = '' } = this.props;
+      id = '', value = '', className = '', addClass = false, img = '' } = this.props;
+    console.log(addClass);
     return (
       <button
         type={ typeButton === ' ' ? 'button' : 'submit' }
         onClick={ onClick }
         disabled={ disabled }
         value={ value }
-        className={ className }
+        className={ addClass ? styles.headerBtnSelected : className }
         data-testid={ id }
         src={ img }
       >
@@ -38,6 +40,7 @@ Button.propTypes = {
   label: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   className: PropTypes.string,
+  addClass: PropTypes.bool,
   img: PropTypes.string,
 };
 
@@ -46,6 +49,7 @@ Button.defaultProps = {
   id: '',
   value: '',
   className: '',
+  addClass: false,
   disabled: false,
   img: '',
 };

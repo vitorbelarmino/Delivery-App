@@ -24,9 +24,14 @@
 
 .header button:last-child:after { content: '→'; }
 
+
+/* .headerBtnSelected {
+  border: 2px solid red ! important;
+  color: black ! important;
+} */
+
 .header button:nth-child( 1 ) {
   background-color: #2fc18c;
-  color: black;
   flex-grow: 0.6;
 }
 
