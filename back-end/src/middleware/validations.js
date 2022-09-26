@@ -1,6 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const { CustomError } = require('../helpers/customError');
-const { loginSchema, registerSchema, saleSchema } = require('../Schemas');
+const { loginSchema, registerSchema, saleSchema, statusSchema } = require('../Schemas');
 
 const validateLogin = (req, res_, next) => {
   const login = req.body;
@@ -23,8 +23,16 @@ const validateSale = (req, res_, next) => {
   next();
 };
 
+const validateStatus = (req, res_, next) => {
+  const { status } = req.body;
+  const { error } = statusSchema.validate({ status });
+  if (error) throw new CustomError(StatusCodes.BAD_REQUEST, error.message);
+  next();
+};
+
 module.exports = {
   validateLogin,
   validateRegister,
   validateSale,
+  validateStatus,
 };
