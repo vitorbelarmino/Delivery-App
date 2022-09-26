@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import context from '../../context/index';
 import styles from '../../styles/header.module.css';
 import { getNameUser } from '../../services/login.storage';
 import { Button } from '..';
 
 function Header() {
   const navigate = useNavigate();
+  const { activePage } = useContext(context);
+  console.log();
 
   return (
     <nav className={ styles.header }>
@@ -14,6 +17,8 @@ function Header() {
         type="button"
         id="customer_products__element-navbar-link-products"
         onClick={ () => navigate('/products') }
+        className=""
+        addClass={ activePage === 'PRODUTOS' }
       />
       <Button
         label="MEUS PEDIDOS"
