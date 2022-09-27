@@ -13,7 +13,9 @@
     "start": "node .",
     "dev": "nodemon .",
     "test": "mocha src/tests/**/*$NAME*.test.js --exit",
+    "teste": "mocha src/tests/**/**.test.js --exit",
     "test:coverage": "nyc --all npm run test",
+    "teste:coverage": "nyc --all npm run teste",
     "test:coverage:json": "nyc --all --reporter=json-summary npm run test",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
   },
