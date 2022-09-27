@@ -16,7 +16,7 @@ function CustomProducts() {
 
   useEffect(() => {
     const result = getTotal();
-    setTotal(result);
+    if (result.length > 0) setTotal(result);
   }, [products]);
 
   return (

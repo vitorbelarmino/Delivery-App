@@ -5,7 +5,7 @@ import context from '../../context/index';
 import styles from '../../styles/products.module.css';
 import {
   dataProducts,
-  saveProducts,
+  addProducts,
   removeProduct,
 } from '../../services/products.storage';
 import Button from '../Button';
@@ -14,7 +14,7 @@ function Quantity({ id, name, price /* url_image: image */ }) {
   const { setProducts } = useContext(context);
   const [quantity, setQuantity] = useState(0);
 
-  const localProducts = dataProducts().find((p) => p.id === id);
+  const localProducts = dataProducts.length && dataProducts().find((p) => p.id === id);
 
   const item = {
     productId: id,
@@ -26,7 +26,7 @@ function Quantity({ id, name, price /* url_image: image */ }) {
 
   const changePlus = () => {
     setQuantity((prev) => prev + 1);
-    saveProducts(item);
+    addProducts(item);
     setProducts(dataProducts);
   };
 

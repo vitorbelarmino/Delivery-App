@@ -2,10 +2,10 @@ const DATA_PRODUCT = 'carrinho';
 
 export const dataProducts = () => (JSON.parse(localStorage.getItem(DATA_PRODUCT))) || [];
 
-export const saveProducts = (item) => {
+export const addProducts = (item) => {
   const products = dataProducts();
 
-  const items = products.find((product) => product.id === item.productId);
+  const items = products.find((product) => product.productId === item.productId);
 
   if (items) {
     items.quantity += item.quantity;
@@ -16,19 +16,22 @@ export const saveProducts = (item) => {
 };
 
 export const removeProduct = (item) => {
-  const products = dataProducts();
-  const items = products.find((product) => product.id === item.productId);
+  let products = dataProducts();
+  const items = products.find((product) => product.productId === item.productId);
 
   if (items && items.qtd > 1) {
     items.quantity -= item.quantity;
   } else {
-    items.quantity = 1;
+    products = products.filter((product) => product.productId !== item.productId);
   }
   localStorage.setItem(DATA_PRODUCT, JSON.stringify(products));
 };
 
 export const getTotal = () => {
   const products = dataProducts();
+
+  if (!products.length > 0) return 0;
+
   const total = products.reduce((concat, item) => {
     const subtotal = concat + (item.unitPrice * item.quantity);
 
