@@ -26,7 +26,7 @@
   width: 160px;
 }
 
-aside p {
+.btnTotalItens p {
   background-color: #036b52;
   border: 1px solid yellow;
   border-radius: 5px;
@@ -111,8 +111,10 @@ aside p {
   background-color: rgb(27, 185, 61);
 }
 
-aside {
+.btnTotalItens {
   align-items: center;
+  background-color: transparent;
+  border: none;  
   bottom: 50px;
   display: flex;
   height: 50px;

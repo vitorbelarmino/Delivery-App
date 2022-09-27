@@ -7,16 +7,17 @@ import Quantity from '../../components/group/Quantity';
 import useProducts from '../../hooks/useProduct';
 import styles from '../../styles/products.module.css';
 import { getTotal } from '../../services/products.storage';
+import { Button } from '../../components';
 
 function CustomProducts() {
   const [data] = useProducts('customer/products');
   const { products } = useContext(context);
 
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(1);
 
   useEffect(() => {
     const result = getTotal();
-    if (result.length > 0) setTotal(result);
+    setTotal(result);
   }, [products]);
 
   return (
@@ -61,10 +62,14 @@ function CustomProducts() {
         }
       </section>
       {/*  <Footer /> */}
-      <aside data-testid="customer_products__checkout-bottom-value">
-        <p>{`Ver Carrinho: R$ ${converteEmReal(total)}`}</p>
-
-      </aside>
+      <button
+        className={ styles.btnTotalItens }
+        type="button"
+        label=""
+        data-testid="customer_products__checkout-bottom-value"
+      >
+        <p>{`${converteEmReal(total)}`}</p>
+      </button>
     </section>
   );
 }

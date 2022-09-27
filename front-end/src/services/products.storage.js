@@ -2,6 +2,24 @@ const DATA_PRODUCT = 'carrinho';
 
 export const dataProducts = () => (JSON.parse(localStorage.getItem(DATA_PRODUCT))) || [];
 
+export const changeQuantity = (item) => {
+  const products = dataProducts();
+
+  const items = products.find((product) => product.productId === item.productId);
+
+  if (item && item.quantity === 0) {
+    this.removeProduct(item);
+    return;
+  }
+
+  if (items) {
+    items.quantity = item.quantity;
+  } else {
+    products.push(item);
+  }
+  localStorage.setItem(DATA_PRODUCT, JSON.stringify(products));
+};
+
 export const addProducts = (item) => {
   const products = dataProducts();
 
