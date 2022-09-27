@@ -17,6 +17,7 @@ router.post('/login', validateLogin, loginController)
   .post('/register', validateRegister, registerController)
   .get('/customer/products', productsController)
   .post('/sale', validateSale, sale.createSale)
+  .get('/sale', sale.allUserSales)
   .get('/sale/:id', sale.saleById)
   .put('/sale/:id', validateStatus, sale.statusUpdate);
 

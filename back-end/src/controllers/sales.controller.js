@@ -8,6 +8,7 @@ const createSale = async (req, res) => {
 };
 
 const saleById = async (req, res) => {
+  console.log('id');
   const { id } = req.params;
   const sale = await saleService.saleById(Number(id));
   res.status(StatusCodes.OK).json(sale);
@@ -20,8 +21,16 @@ const statusUpdate = async (req, res) => {
   res.status(StatusCodes.OK).end();
 };
 
+const allUserSales = async (req, res) => {
+  console.log('name');
+  const { name } = req.body;
+  const allSales = await saleService.allUserSales(name);
+  res.status(StatusCodes.OK).json(allSales);
+};
+
 module.exports = {
   createSale,
   saleById,
   statusUpdate,
+  allUserSales,
 };
