@@ -1,4 +1,4 @@
-import { saveToken } from './login.storage';
+import { saveToken, saveDataUser } from './login.storage';
 
 async function useLogin(data) {
   // const [login] = useState([]);
@@ -14,6 +14,7 @@ async function useLogin(data) {
     const result = await response.json();
     if (result.token) {
       saveToken(result.token);
+      saveDataUser(result);
     }
     return result;
   } catch (error) {

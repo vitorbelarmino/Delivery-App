@@ -8,13 +8,12 @@ import { Button } from '..';
 function Header() {
   const navigate = useNavigate();
   const { activePage } = useContext(context);
-  console.log();
 
   return (
     <nav className={ styles.header }>
       <Button
         label="PRODUTOS"
-        type="button"
+        typeButton="button"
         id="customer_products__element-navbar-link-products"
         onClick={ () => navigate('/products') }
         className=""
@@ -22,21 +21,21 @@ function Header() {
       />
       <Button
         label="MEUS PEDIDOS"
-        type="button"
+        typeButton="button"
         id="customer_products__element-navbar-link-orders"
         onClick={ () => navigate('/orders') }
       />
       <Button
         label={ getNameUser() || '' }
-        type="button"
+        typeButton="button"
         id="customer_products__element-navbar-user-full-name"
         onClick={ () => navigate('/orders') }
       />
       <Button
         label="SAIR"
-        type="button"
+        typeButton="button"
         id="customer_products__element-navbar-link-logout"
-        onClick={ () => navigate('/logout') }
+        onClick={ () => { localStorage.clear('user'); navigate('/login'); } }
       />
 
     </nav>

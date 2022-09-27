@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import converteEmReal from '../../helper/moneyConverter';
 import context from '../../context/index';
 
@@ -9,10 +10,13 @@ import styles from '../../styles/products.module.css';
 import { getTotal } from '../../services/products.storage';
 
 function CustomProducts() {
+  const navigate = useNavigate();
   const [data] = useProducts('customer/products');
   const { products } = useContext(context);
 
-  const [total, setTotal] = useState(0);
+  console.log(products.length > 0);
+
+  const [total, setTotal] = useState(1);
 
   useEffect(() => {
     const result = getTotal();
@@ -61,7 +65,19 @@ function CustomProducts() {
         }
       </section>
       {/*  <Footer /> */}
-      <aside><p>{`Ver Carinho: R$ ${total}`}</p></aside>
+      <button
+        className={ styles.btnTotalItens }
+        type="button"
+        label=""
+        data-testid="customer_products__button-cart"
+        onClick={ () => navigate('/customer/checkout') }
+        disabled={ !products.length > 0 }
+      >
+        <p data-testid="customer_products__checkout-bottom-value">
+          {`${converteEmReal(total)}`}
+
+        </p>
+      </button>
     </section>
   );
 }

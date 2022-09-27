@@ -6,10 +6,9 @@ class Button extends Component {
   render() {
     const { typeButton = 'button', label = '', onClick, disabled = false,
       id = '', value = '', className = '', addClass = false, img = '' } = this.props;
-    console.log(addClass);
     return (
       <button
-        type={ typeButton === ' ' ? 'button' : 'submit' }
+        type={ typeButton === 'button' ? 'button' : 'submit' }
         onClick={ onClick }
         disabled={ disabled }
         value={ value }
