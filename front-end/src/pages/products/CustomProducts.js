@@ -14,8 +14,6 @@ function CustomProducts() {
   const [data] = useProducts('customer/products');
   const { products } = useContext(context);
 
-  console.log(products.length > 0);
-
   const [total, setTotal] = useState(1);
 
   useEffect(() => {

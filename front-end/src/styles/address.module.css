@@ -1,0 +1,24 @@
+.container_address {
+ display: flex;
+ margin: auto;
+ width: 80%;
+}
+
+.container_address input:not(button), select {
+  height: 30px;
+  padding: 5px;
+}
+
+.btn_finish {
+  background-color: #97D8B2;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.btn_finish:hover {
+  color:white;
+  background-color: #5c8e71;
+}
+
