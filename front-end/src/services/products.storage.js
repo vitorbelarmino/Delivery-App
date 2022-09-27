@@ -19,7 +19,7 @@ export const removeProduct = (item) => {
   let products = dataProducts();
   const items = products.find((product) => product.productId === item.productId);
 
-  if (items && items.qtd > 1) {
+  if (items && items.quantity > 1) {
     items.quantity -= item.quantity;
   } else {
     products = products.filter((product) => product.productId !== item.productId);
