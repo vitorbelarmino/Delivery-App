@@ -4,7 +4,6 @@ import context from '../../context/index';
 import Header from '../../components/group/Header';
 import Address from '../../components/group/Address';
 
-// import useProducts from '../../hooks/useProduct';
 import styles from '../../styles/checkout.module.css';
 import { getTotal, dataProducts, removeItemCart } from '../../services/products.storage';
 import { Button } from '../../components';

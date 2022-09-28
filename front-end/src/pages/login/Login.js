@@ -62,6 +62,7 @@ export default function Login() {
             value={ email }
             id="common_login__input-email"
             name="login"
+            className={ styles.form_input }
             onChange={ ({ target }) => setEmail(target.value) }
           />
 
@@ -71,6 +72,7 @@ export default function Login() {
             value={ password }
             name="senha"
             id="common_login__input-password"
+            className={ styles.form_input }
             onChange={ ({ target }) => setPassword(target.value) }
           />
 

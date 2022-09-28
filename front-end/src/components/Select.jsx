@@ -10,9 +10,10 @@ class Select extends Component {
       value = '',
       id = '',
       options = '',
+      className = '',
     } = this.props;
     return (
-      <div className="">
+      <div>
         <label htmlFor={ name }>
           { label }
         </label>
@@ -23,14 +24,15 @@ class Select extends Component {
           required
           onChange={ onChange }
           value={ value }
+          className={ className }
         >
           {
-            options.map(({ strArea }, index) => (
+            options.map(({ id: sellerId, name: nameFull }, index) => (
               <option
                 key={ index }
-                data-testid={ `${strArea}-option` }
+                data-testid={ `${sellerId}-option` }
               >
-                { strArea }
+                { nameFull }
 
               </option>
             ))
@@ -48,6 +50,7 @@ Select.propTypes = {
   id: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
+  className: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape(),
   ),
@@ -57,10 +60,9 @@ Select.defaultProps = {
   label: '',
   name: '',
   id: '',
+  className: '',
   value: '',
   options: '',
-  // defaultValue: '',
-  // defaultOption: 'Selecione',
 };
 
 export default Select;
