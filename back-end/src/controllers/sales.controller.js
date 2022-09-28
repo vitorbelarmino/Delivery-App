@@ -20,8 +20,15 @@ const statusUpdate = async (req, res) => {
   res.status(StatusCodes.OK).end();
 };
 
+const allUserSales = async (req, res) => {
+  const { name } = req.body;
+  const allSales = await saleService.allUserSales(name);
+  res.status(StatusCodes.OK).json(allSales);
+};
+
 module.exports = {
   createSale,
   saleById,
   statusUpdate,
+  allUserSales,
 };
