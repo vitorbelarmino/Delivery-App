@@ -1,12 +1,14 @@
 const { StatusCodes } = require('http-status-codes');
-const { Users, Sales } = require('../database/models');
+const { Users, Sales, Products, SalesProducts } = require('../database/models');
 const { CustomError } = require('../helpers/customError');
+const { validateProducts } = require('../helpers/validateProducts');
 
 const createSale = async (sale) => {
   const user = await Users.findOne({ where: { name: sale.userName } });
   const seller = await Users.findOne({ where: { name: sale.SellerName } });
   if (!seller) throw new CustomError(StatusCodes.BAD_REQUEST, 'Vendedor não cadastrado');
-  
+  const allProducts = await Products.findAll({ attributes: ['id'] });
+  validateProducts(allProducts, sale.products);
   const ojectSele = {
     userId: user.id,
     sellerId: seller.id,
@@ -15,6 +17,9 @@ const createSale = async (sale) => {
     deliveryNumber: sale.number,
   };
   const newSale = await Sales.create(ojectSele);
+  sale.products.forEach((product) => SalesProducts.create(
+    { saleId: newSale.id, productId: product.productId, quantity: product.quantity },
+    ));
   return newSale;
 };
 

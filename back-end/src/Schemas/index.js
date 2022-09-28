@@ -54,6 +54,12 @@ const registerSchema = Joi.object({
 });
 
 const saleSchema = Joi.object({
+  products: Joi.array().items(
+    Joi.object({
+      productId: Joi.number().required().messages({ 'any.required': 'productId is required' }),
+      quantity: Joi.number().required().messages({ 'any.required': 'quantity is required' }),
+    }).required().messages({ 'any.required': 'products is required' }),
+  ),
   userName: Joi.string().min(12).required().messages(msgSchema.UserName),
   SellerName: Joi.string().min(12).required().messages(msgSchema.SellerName),
   price: Joi.number().required().messages(msgSchema.price),
