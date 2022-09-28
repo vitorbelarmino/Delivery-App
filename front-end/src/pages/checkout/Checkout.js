@@ -12,6 +12,7 @@ import { Button } from '../../components';
 function Checkout() {
   const { products, setProducts } = useContext(context);
   const [total, setTotal] = useState(0);
+  // const [order, setOrder] = useState({});
 
   const actionDelete = (id) => {
     const newArrayProducts = removeItemCart(id);

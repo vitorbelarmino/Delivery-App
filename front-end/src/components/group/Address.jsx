@@ -1,4 +1,9 @@
 import { useState, useEffect } from 'react';
+import {
+
+  useLocation,
+
+} from 'react-router-dom';
 import styles from '../../styles/address.module.css';
 import { Button, Input, Select } from '..';
 import getSellersApi from '../../services/getApi';
@@ -8,6 +13,7 @@ function Address() {
   const [address, setAddress] = useState('');
   const [dbSellers, setDbSellers] = useState('');
   const [number, setNumber] = useState('');
+  const { pathname } = useLocation();
 
   const saveAddress = () => {
     if (!seller || !address || !number) {
@@ -21,6 +27,10 @@ function Address() {
 
   useEffect((() => {
     const request = async () => {
+      if (pathname === '/customer/checkout') {
+        const data = await getSellersApi('/user/seller');
+        setDbSellers(data);
+      }
       const data = await getSellersApi('customer/products');
 
       if (data.length) {
@@ -30,6 +40,8 @@ function Address() {
     };
     request();
   }), []);
+
+  console.log(dbSellers);
 
   return (
     <section className={ styles.container_address }>
