@@ -1,18 +1,32 @@
 import { useState, useEffect } from 'react';
 import styles from '../../styles/address.module.css';
 import { Button, Input, Select } from '..';
+import getSellersApi from '../../services/getApi';
 
 function Address() {
   const [seller, setSeller] = useState('');
-  const [dbSellers, setDbSellers] = useState('');
   const [address, setAddress] = useState('');
+  const [dbSellers, setDbSellers] = useState('');
   const [number, setNumber] = useState('');
+
+  const saveAddress = () => {
+    if (!seller || !address || !number) {
+      console.log('vazio');
+      return;
+    }
+
+    console.log(seller);
+    console.log('salvou');
+  };
 
   useEffect((() => {
     const request = async () => {
-      const response = await fetch('http://localhost:3001/customer/products');
-      const json = await response.json();
-      setDbSellers(json);
+      const data = await getSellersApi('customer/products');
+
+      if (data.length) {
+        setSeller(data[0].name);
+        setDbSellers(data);
+      }
     };
     request();
   }), []);
@@ -24,10 +38,11 @@ function Address() {
 
         <Select
           label="Vend(a) Resp."
-          onChange={ ({ target }) => setSeller(target.id) }
+          onChange={ ({ target }) => setSeller(target.value) }
           value={ seller }
-          name=""
-          id=""
+          defaultValue="currency"
+          name="seller"
+          id="customer_checkout__select-seller"
           options={ dbSellers.length ? dbSellers : [{}] }
           className={ styles.select }
           required
@@ -40,13 +55,14 @@ function Address() {
             onChange={ ({ target }) => setAddress(target.value) }
             value={ address }
             placeholder=""
-            id=""
+            id="customer_checkout__input-address"
           />
           <Button
+            typeButton="submit"
             label="Finalizar Pedido"
-            onClick={ () => {} }
+            onClick={ () => saveAddress() }
             disabled={ false }
-            id="customer_checkout__element-order-table-remove"
+            id="customer_checkout__button-submit-order"
             className={ styles.btn_finish }
           />
         </div>
@@ -57,7 +73,7 @@ function Address() {
           onChange={ ({ target }) => setNumber(target.value) }
           value={ number }
           placeholder=""
-          id=""
+          id="customer_checkout__input-address-number"
         />
       </section>
     </section>

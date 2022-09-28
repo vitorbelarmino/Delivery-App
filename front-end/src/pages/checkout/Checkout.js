@@ -3,13 +3,13 @@ import context from '../../context/index';
 
 import Header from '../../components/group/Header';
 import Address from '../../components/group/Address';
+import converteEmReal from '../../helper/moneyConverter';
 
 import styles from '../../styles/checkout.module.css';
 import { getTotal, dataProducts, removeItemCart } from '../../services/products.storage';
 import { Button } from '../../components';
 
 function Checkout() {
-  // const [data] = useProducts('customer/products');
   const { products, setProducts } = useContext(context);
   const [total, setTotal] = useState(0);
 
@@ -77,14 +77,14 @@ function Checkout() {
                       `customer_checkout__element-order-table-unit-price-${index}`
                     }
                   >
-                    { unitPrice }
+                    { converteEmReal(unitPrice) }
                   </td>
                   <td
                     data-testid={
                       `customer_checkout__element-order-table-sub-total-${index}`
                     }
                   >
-                    { unitPrice * quantity }
+                    { converteEmReal(unitPrice * quantity) }
                   </td>
                   <td>
                     <Button
@@ -108,7 +108,7 @@ function Checkout() {
         className={ styles.btnTotalItens }
         data-testid="customer_checkout__element-order-total-price"
       >
-        <p>{total}</p>
+        <p>{converteEmReal(total)}</p>
       </div>
       <Address />
     </div>

@@ -4,7 +4,7 @@ import styles from '../styles/header.module.css';
 
 class Button extends Component {
   render() {
-    const { typeButton = 'button', label = '', onClick, disabled = false,
+    const { typeButton = '', label = '', onClick, disabled = false,
       id = '', value = '', className = '', addClass = false, img = '' } = this.props;
     return (
       <button
