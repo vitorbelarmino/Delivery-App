@@ -1,16 +1,21 @@
 import { useState, useEffect } from 'react';
 import styles from '../../styles/address.module.css';
-// import useProducts from '../../hooks/useProduct';
 import { Button, Input, Select } from '..';
 
 function Address() {
   const [seller, setSeller] = useState('');
+  const [dbSellers, setDbSellers] = useState('');
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
 
-  useEffect(() => {
-
-  }, []);
+  useEffect((() => {
+    const request = async () => {
+      const response = await fetch('http://localhost:3001/customer/products');
+      const json = await response.json();
+      setDbSellers(json);
+    };
+    request();
+  }), []);
 
   return (
     <section className={ styles.container_address }>
@@ -23,7 +28,7 @@ function Address() {
           value={ seller }
           name=""
           id=""
-          options={ [{ id: 1, name: 'fabiano' }] }
+          options={ dbSellers.length ? dbSellers : [{}] }
           className={ styles.select }
           required
         />
