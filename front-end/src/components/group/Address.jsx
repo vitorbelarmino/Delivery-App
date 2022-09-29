@@ -6,7 +6,7 @@ import getSellersApi from '../../services/getApi';
 import { dataProducts, getTotal } from '../../services/products.storage';
 import { dataUser } from '../../services/login.storage';
 import context from '../../context';
-import {saveOrder} from '../../services/order.service'
+import saveOrder from '../../services/order.service';
 
 function Address() {
   const [seller, setSeller] = useState('');
@@ -16,15 +16,14 @@ function Address() {
   const { pathname } = useLocation();
   const { postOrder, setPostOrder } = useContext(context);
   const history = useHistory();
-  // const [value, setValue] = useState();
 
   const saveAddress = () => {
     if (seller || !address || !number) {
       console.log('vazio');
       return;
     }
-    const save = saveOrder(postOrder)
-    history.push(`/customer/orders/${save.id}`)
+    const save = saveOrder(postOrder);
+    history.push(`/customer/orders/${save.id}`);
   };
 
   useEffect(() => {

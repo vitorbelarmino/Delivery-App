@@ -1,4 +1,4 @@
-export async function saveOrder(data) {
+export default async function saveOrder(data) {
   const config = {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ ...data }),
