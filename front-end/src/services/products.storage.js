@@ -45,6 +45,15 @@ export const removeProduct = (item) => {
   localStorage.setItem(DATA_PRODUCT, JSON.stringify(products));
 };
 
+export const removeItemCart = (id) => {
+  const products = dataProducts();
+  const newArrayProduct = products.length && products
+    .filter((p) => p.productId !== parseInt(id, 10));
+  localStorage.setItem(DATA_PRODUCT, JSON.stringify(newArrayProduct));
+
+  return dataProducts();
+};
+
 export const getTotal = () => {
   const products = dataProducts();
 

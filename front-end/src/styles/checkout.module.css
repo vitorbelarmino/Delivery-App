@@ -1,0 +1,78 @@
+.checkout_container {
+  color: black;
+  display: flex;
+  flex-flow: column wrap;
+  font-family: Roboto , sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.checkout_container table {
+  border: 1px solid lightgray;
+  font-weight: 600;
+  margin: auto;
+  margin-top: 8px;
+  width: 80%;
+}
+
+.legend {
+  display: flex;
+  font-size: 20px;
+  font-weight: 800;
+  margin: auto;
+  margin-top: 80px;
+  text-align: left;
+  width: 80%;
+}
+
+thead tr th {
+  color: black;
+  font-size: 18px;
+  margin: 18px;
+  padding: 18px;
+}
+
+.btn_del {
+  background-color: rgb(250, 5, 5);
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  width: 150px;
+}
+
+.total {
+  display: flex;
+}
+
+.btnTotalItens {
+  align-items: center;
+  border: none;
+  display: flex;
+  height: 1px;
+  justify-content: flex-end;
+  margin: auto;
+  margin-top: 40px;
+  width: 80%;
+}
+
+.btnTotalItens p {
+  background-color: #036b52;
+  border: 1px solid yellow;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 1px;
+  padding: 10px;
+}
+
+tbody tr:first-child {
+  background: #97d8b2;
+}
+
+tbody tr:nth-child( 2n+3 ) {
+  background: rgb(217, 214, 214);
+}
