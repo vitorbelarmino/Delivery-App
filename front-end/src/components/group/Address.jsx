@@ -13,15 +13,15 @@ function Address() {
   const [dbSellers, setDbSellers] = useState('');
   const [number, setNumber] = useState('');
   const { pathname } = useLocation();
-  const { setPostOrder } = useContext(context);
-  const [value, setValue] = useState();
+  const { postOrder, setPostOrder } = useContext(context);
+  // const [value, setValue] = useState();
 
   const saveAddress = () => {
     if (seller || !address || !number) {
       console.log('vazio');
       return;
     }
-    setPostOrder(value);
+    console.log(postOrder);
   };
 
   useEffect(() => {
@@ -33,8 +33,8 @@ function Address() {
       address,
       number,
     };
-    setValue(order);
-  }, [seller, address, number]);
+    setPostOrder(order);
+  }, [seller, address, number, setPostOrder]);
 
   useEffect((() => {
     const request = async () => {
