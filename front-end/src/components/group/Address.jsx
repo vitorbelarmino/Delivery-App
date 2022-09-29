@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react';
-import {
-
-  useLocation,
-
-} from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import styles from '../../styles/address.module.css';
 import { Button, Input, Select } from '..';
 import getSellersApi from '../../services/getApi';
+import { dataProducts, getTotal } from '../../services/products.storage';
+import { dataUser } from '../../services/login.storage';
+import context from '../../context';
 
 function Address() {
   const [seller, setSeller] = useState('');
@@ -14,16 +13,28 @@ function Address() {
   const [dbSellers, setDbSellers] = useState('');
   const [number, setNumber] = useState('');
   const { pathname } = useLocation();
+  const { setPostOrder } = useContext(context);
+  const [value, setValue] = useState();
 
   const saveAddress = () => {
-    if (!seller || !address || !number) {
+    if (seller || !address || !number) {
       console.log('vazio');
       return;
     }
-
-    console.log(seller);
-    console.log('salvou');
+    setPostOrder(value);
   };
+
+  useEffect(() => {
+    const order = {
+      products: dataProducts(),
+      userName: dataUser().data.name,
+      SellerName: seller,
+      price: getTotal(),
+      address,
+      number,
+    };
+    setValue(order);
+  }, [seller, address, number]);
 
   useEffect((() => {
     const request = async () => {
@@ -39,9 +50,8 @@ function Address() {
       }
     };
     request();
-  }), []);
-
-  console.log(dbSellers);
+    // setOrder();
+  }), [pathname]);
 
   return (
     <section className={ styles.container_address }>
