@@ -1,11 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import styles from '../../styles/address.module.css';
 import { Button, Input, Select } from '..';
 import getSellersApi from '../../services/getApi';
 import { dataProducts, getTotal } from '../../services/products.storage';
 import { dataUser } from '../../services/login.storage';
 import context from '../../context';
+import {saveOrder} from '../../services/order.service'
 
 function Address() {
   const [seller, setSeller] = useState('');
@@ -14,6 +15,7 @@ function Address() {
   const [number, setNumber] = useState('');
   const { pathname } = useLocation();
   const { postOrder, setPostOrder } = useContext(context);
+  const history = useHistory();
   // const [value, setValue] = useState();
 
   const saveAddress = () => {
@@ -21,7 +23,8 @@ function Address() {
       console.log('vazio');
       return;
     }
-    console.log(postOrder);
+    const save = saveOrder(postOrder)
+    history.push(`/customer/orders/${save.id}`)
   };
 
   useEffect(() => {
