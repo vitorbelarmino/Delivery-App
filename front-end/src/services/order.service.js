@@ -1,4 +1,6 @@
-export default async function saveOrder(data, token) {
+import { getToken } from './login.storage';
+
+export default async function saveOrder(data) {
   const config = {
     headers: {
       'Content-Type': 'application/json',
