@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
 import { Button } from '../../components';
 import Header from '../../components/group/Header';
 import converteEmReal from '../../helper/moneyConverter';
+import styles from '../../styles/orders.module.css';
+import request from '../../services/getApi';
+
+moment.locale('pt-br');
 
 const DTIS = {
   status: 'customer_order_details__element-order-details-label-delivery-status',
@@ -22,30 +27,30 @@ export default function Orders() {
     setOrdStatus('ENTREGUE');
   };
 
-  useEffect(() => {
-    const request = async () => {
-      const data = await getSellersApi(`sale/${id}`);
+  useEffect((() => {
+    const requestDetails = async () => {
+      const data = await request(`sale/${id}`);
       setOrder(data);
-      setOrdStatus(data.status);
+      setOrdStatus(data.sale.status);
     };
-    request();
-  }, [id]);
+    requestDetails();
+  }), [id]);
 
   return (
     <div>
       <Header />
       <div className="title">Detalhe do Pedido</div>
-      <div className="details">
+      <div className="styles.details">
         <p data-testid="customer_order_details__element-order-details-label-order-id">
           Pedido
           {' '}
-          {order.deliveryNumber}
+          {order ? `PEDIDO 000${order.sale.deliveryNumber}` : '0001'}
         </p>
         <p data-testid="customer_order_details__element-order-details-label-seller-name">
-          {order.deliveryAddress}
+          {order ? `P. Vend: ${order.seller.name}` : 'Vendedor'}
         </p>
         <p data-testid="customer_order_details__element-order-details-label-order-date">
-          {order.saleDate}
+          {order ? moment().format('DD/MM/YYYY', order.sale.saleDate) : '30/09/2022'}
         </p>
         <p
           data-testid={ DTIS.status }
@@ -71,8 +76,8 @@ export default function Orders() {
           </tr>
         </thead>
         <tbody>
-          {order.products.length > 0
-            && order.products.map(({ name, SalesProducts, price }, index) => (
+          {order?.sale.products.length > 0
+            && order.sale.products.map(({ name, SalesProducts, price }, index) => (
               <tr key={ index }>
                 <td
                   ata-testid={ `${DTIS.itemNumber}${index}` }
@@ -108,7 +113,7 @@ export default function Orders() {
         className={ styles.btnTotalItens }
         data-testid="customer_order_details__element-order-total-price"
       >
-        <p>{converteEmReal(order.totalPrice)}</p>
+        <p>{converteEmReal(order ? order.sale.totalPrice : 'R$ 10.00')}</p>
       </div>
     </div>
   );

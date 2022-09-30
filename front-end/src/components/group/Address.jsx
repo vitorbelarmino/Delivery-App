@@ -4,7 +4,7 @@ import styles from '../../styles/address.module.css';
 import { Button, Input, Select } from '..';
 import getSellersApi from '../../services/getApi';
 import { dataProducts, getTotal } from '../../services/products.storage';
-import { dataUser } from '../../services/login.storage';
+import { dataUser, getToken } from '../../services/login.storage';
 import context from '../../context';
 import saveOrder from '../../services/order.service';
 
@@ -14,6 +14,8 @@ function Address() {
   const [dbSellers, setDbSellers] = useState('');
   const [number, setNumber] = useState('');
   const { postOrder, setPostOrder } = useContext(context);
+  const token = getToken();
+
   const navigate = useNavigate();
 
   const saveAddress = async () => {
@@ -21,7 +23,9 @@ function Address() {
       console.log('Informe os dados do Endereço');
       return;
     }
-    const result = await saveOrder(postOrder);
+
+    const result = await saveOrder(postOrder, token);
+
     if (result) {
       navigate(`/customer/orders/${result.id ? result.id : 1}`);
     }
@@ -46,7 +50,8 @@ function Address() {
       setDbSellers(data);
 
       if (data.length) {
-        setSeller(data[0].name);
+        const nameSeller = data[0].name;
+        setSeller(nameSeller);
         setDbSellers(data);
       }
     };
