@@ -5,6 +5,7 @@ export function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    localStorage.removeItem('produtos');
     navigate('/login');
   });
 

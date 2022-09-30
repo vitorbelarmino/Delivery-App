@@ -4,10 +4,10 @@ export default async function saveOrder(data) {
   const config = {
     headers: {
       'Content-Type': 'application/json',
+      authorization: getToken(),
     },
     body: JSON.stringify(data),
     method: 'POST',
-    token: getToken(),
   };
 
   try {
@@ -23,5 +23,6 @@ export default async function saveOrder(data) {
     return result;
   } catch (error) {
     console.log(error, 'aqui');
+    return error;
   }
 }

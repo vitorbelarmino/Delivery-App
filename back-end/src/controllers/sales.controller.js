@@ -3,8 +3,8 @@ const saleService = require('../services/sales.service');
 
 const createSale = async (req, res) => {
   const sale = req.body;
-  const { token } = req.headers;
-  const newSale = await saleService.createSale(sale, token);
+  const { authorization } = req.headers;
+  const newSale = await saleService.createSale(sale, authorization);
   res.status(StatusCodes.CREATED).json(newSale);
 };
 

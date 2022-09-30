@@ -10,7 +10,7 @@ module.exports = {
         delivery_address: 'rua margarida',
         delivery_number: '2',
         sale_date: Sequelize.literal('CURRENT_TIMESTAMP'),
-        status: 'saiu pra entrega',
+        status: 'Pendente',
       },
       {
         id: 2,
@@ -20,7 +20,7 @@ module.exports = {
         delivery_address: 'rua pateta',
         delivery_number: '3',
         sale_date: Sequelize.literal('CURRENT_TIMESTAMP'),
-        status: 'saiu pra entrega',
+        status: 'Pendente',
       }
     ], { timestamps: false });
   },
