@@ -23,7 +23,7 @@ function Address() {
     }
     const result = await saveOrder(postOrder);
     if (result) {
-      navigate(`/customer/orders/${result.id}`);
+      navigate(`/customer/orders/${result.id ? result.id : 1}`);
     }
   };
 
