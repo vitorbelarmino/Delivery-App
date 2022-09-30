@@ -1,6 +1,4 @@
-import { getToken } from './login.storage';
-
-export default async function saveOrder(data) {
+export default async function saveOrder(data, token) {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -9,16 +7,10 @@ export default async function saveOrder(data) {
     body: JSON.stringify(data),
     method: 'POST',
   };
-
   try {
     const END_POINT = 'http://localhost:3001/sale';
     const response = await fetch(END_POINT, { ...config });
     const result = await response.json();
-
-    if (!result.error) {
-      // console.log(result);
-    }
-    // console.log(result.error);
 
     return result;
   } catch (error) {

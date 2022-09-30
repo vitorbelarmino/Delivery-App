@@ -33,7 +33,8 @@ const saleById = async (id) => {
   }],
   where: { id } });
   if (!sale) throw new CustomError(StatusCodes.NOT_FOUND, 'Venda não encontrada');
-  return sale;
+  const seller = await Users.findOne({ where: { id: sale.seller_id } });
+  return { sale, seller };
 };
 
 const statusUpdate = async (id, status) => {
