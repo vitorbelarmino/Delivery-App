@@ -26,7 +26,11 @@ const createSale = async (sale, token) => {
 };
 
 const saleById = async (id) => {
-  const sale = await Sales.findOne({ where: { id } });
+  const sale = await Sales.findOne({ include: [{
+    model: Products,
+    as: 'products',
+  }],
+  where: { id } });
   if (!sale) throw new CustomError(StatusCodes.NOT_FOUND, 'Venda não encontrada');
   return sale;
 };
