@@ -1,9 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
-import context from '../../context/index';
-
 import Header from '../../components/group/Header';
-import Address from '../../components/group/Address';
+import context from '../../context/index';
 import converteEmReal from '../../helper/moneyConverter';
+import Address from '../../components/group/Address';
 
 import styles from '../../styles/checkout.module.css';
 import { getTotal, dataProducts, removeItemCart } from '../../services/products.storage';
