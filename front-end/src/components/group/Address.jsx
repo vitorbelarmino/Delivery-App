@@ -48,6 +48,7 @@ function Address() {
       setDbSellers(data);
 
       if (data.length) {
+        // salvei numa constante, porque direto não salvava
         const nameSeller = data[0].name;
         setSeller(nameSeller);
         console.log(seller, 'seller');
