@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/address.module.css';
 import { Button, Input, Select } from '..';
 import getSellersApi from '../../services/getApi';
@@ -13,23 +13,25 @@ function Address() {
   const [address, setAddress] = useState('');
   const [dbSellers, setDbSellers] = useState('');
   const [number, setNumber] = useState('');
-  const { pathname } = useLocation();
   const { postOrder, setPostOrder } = useContext(context);
-  const history = useHistory();
+  const navigate = useNavigate();
 
-  const saveAddress = () => {
-    if (seller || !address || !number) {
-      console.log('vazio');
+  const saveAddress = async () => {
+    if (!seller || !address || !number) {
+      console.log('Informe os dados do Endereço');
       return;
     }
-    const save = saveOrder(postOrder);
-    history.push(`/customer/orders/${save.id}`);
+    const result = await saveOrder(postOrder);
+    if (result) {
+      navigate(`/customer/orders/${result.id}`);
+    }
   };
 
   useEffect(() => {
     const order = {
-      products: dataProducts(),
-      userName: dataUser().data.name,
+      products: dataProducts()
+        .map(({ productId, quantity }) => ({ productId, quantity })),
+      userName: dataUser().name,
       SellerName: seller,
       price: getTotal(),
       address,
@@ -40,11 +42,8 @@ function Address() {
 
   useEffect((() => {
     const request = async () => {
-      if (pathname === '/customer/checkout') {
-        const data = await getSellersApi('/user/seller');
-        setDbSellers(data);
-      }
-      const data = await getSellersApi('customer/products');
+      const data = await getSellersApi('user/seller');
+      setDbSellers(data);
 
       if (data.length) {
         setSeller(data[0].name);
@@ -52,8 +51,7 @@ function Address() {
       }
     };
     request();
-    // setOrder();
-  }), [pathname]);
+  }), []);
 
   return (
     <section className={ styles.container_address }>

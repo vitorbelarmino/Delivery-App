@@ -12,7 +12,7 @@ async function useRegister(data) {
     const response = await fetch(END_POINT, { ...config });
     const result = await response.json();
     if (!result.error) {
-      saveDataUser(result);
+      saveDataUser(result.data);
     }
     return result;
   } catch (error) {
