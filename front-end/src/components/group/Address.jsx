@@ -16,18 +16,21 @@ function Address() {
   const { postOrder, setPostOrder } = useContext(context);
   const navigate = useNavigate();
 
-  const saveAddress = () => {
+  const saveAddress = async () => {
     if (!seller || !address || !number) {
-      console.log('vazio');
+      console.log('Informe os dados do Endereço');
       return;
     }
-    const save = saveOrder(postOrder);
-    // navigate(`/customer/orders/${save.id}`);
+    const result = await saveOrder(postOrder);
+    if (result) {
+      navigate(`/customer/orders/${result.id}`);
+    }
   };
 
   useEffect(() => {
     const order = {
-      products: dataProducts(),
+      products: dataProducts()
+        .map(({ productId, quantity }) => ({ productId, quantity })),
       userName: dataUser().name,
       SellerName: seller,
       price: getTotal(),
