@@ -24,11 +24,15 @@ function Address() {
       return;
     }
 
-    const result = await saveOrder(postOrder, token);
+    const result = await saveOrder(postOrder);
+    console.log(result);
 
-    if (result) {
-      navigate(`/customer/orders/${result.id ? result.id : 1}`);
-    }
+    if (result.id !== undefined) {
+      navigate(`/customer/orders/${result.id}`);
+
+
+    const result = await saveOrder(postOrder, token);
+   
   };
 
   useEffect(() => {
@@ -50,13 +54,15 @@ function Address() {
       setDbSellers(data);
 
       if (data.length) {
+
+        // salvei numa constante, porque direto não salvava
         const nameSeller = data[0].name;
-        setSeller(nameSeller);
+        setSeller(nameSeller);    
         setDbSellers(data);
       }
     };
     request();
-  }), []);
+  }), [seller]);
 
   return (
     <section className={ styles.container_address }>
@@ -84,6 +90,7 @@ function Address() {
             placeholder=""
             id="customer_checkout__input-address"
           />
+
           <Button
             typeButton="submit"
             label="Finalizar Pedido"
@@ -91,6 +98,7 @@ function Address() {
             disabled={ false }
             id="customer_checkout__button-submit-order"
             className={ styles.btn_finish }
+            src=""
           />
         </div>
         <Input
@@ -102,6 +110,7 @@ function Address() {
           placeholder=""
           id="customer_checkout__input-address-number"
         />
+
       </section>
     </section>
   );

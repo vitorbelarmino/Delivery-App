@@ -7,7 +7,7 @@ import Header from '../../components/group/Header';
 import Quantity from '../../components/group/Quantity';
 import useProducts from '../../hooks/useProduct';
 import styles from '../../styles/products.module.css';
-import { getTotal } from '../../services/products.storage';
+import { getTotal, dataProducts } from '../../services/products.storage';
 
 function CustomProducts() {
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ function CustomProducts() {
         label=""
         data-testid="customer_products__button-cart"
         onClick={ () => navigate('/customer/checkout') }
-        disabled={ !products.length > 0 }
+        disabled={ !dataProducts().length > 0 }
       >
         <p data-testid="customer_products__checkout-bottom-value">
           {`${converteEmReal(total)}`}

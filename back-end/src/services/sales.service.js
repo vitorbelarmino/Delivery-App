@@ -22,6 +22,7 @@ const createSale = async (sale, token) => {
   sale.products.forEach((product) => SalesProducts.create(
     { saleId: newSale.id, productId: product.productId, quantity: product.quantity },
     ));
+    
   return newSale;
 };
 

@@ -2,7 +2,7 @@ export default async function saveOrder(data, token) {
   const config = {
     headers: {
       'Content-Type': 'application/json',
-      token,
+      authorization: getToken(),
     },
     body: JSON.stringify(data),
     method: 'POST',
@@ -15,5 +15,6 @@ export default async function saveOrder(data, token) {
     return result;
   } catch (error) {
     console.log(error, 'aqui');
+    return error;
   }
 }
