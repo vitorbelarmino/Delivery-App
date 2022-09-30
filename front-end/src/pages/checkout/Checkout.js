@@ -8,6 +8,7 @@ import styles from '../../styles/checkout.module.css';
 import { getTotal, dataProducts, removeItemCart } from '../../services/products.storage';
 import { Button } from '../../components';
 
+// comment
 function Checkout() {
   const { products, setProducts } = useContext(context);
   const [total, setTotal] = useState(0);
