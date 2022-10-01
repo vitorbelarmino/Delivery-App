@@ -2,11 +2,10 @@ import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import context from '.';
 import '../App.css';
-// import { dataProducts, getTotal } from '../services/products.storage';
-// import { dataUser } from '../services/login.storage';
 
 function Provider({ children }) {
   const [products, setProducts] = useState([]);
+  const [users, setUsers] = useState([]);
   const [activePage, setActivePage] = useState('PRODUTOS');
   const [postOrder, setPostOrder] = useState();
 
@@ -14,11 +13,18 @@ function Provider({ children }) {
     {
       products,
       setProducts,
+      users,
+      setUsers,
       activePage,
       setActivePage,
       postOrder,
       setPostOrder,
-    }), [products, setProducts, activePage, setActivePage, postOrder, setPostOrder]);
+    }), [
+    products, setProducts,
+    users, setUsers,
+    activePage, setActivePage,
+    postOrder, setPostOrder,
+  ]);
 
   return (
     <context.Provider value={ contextValue }>
