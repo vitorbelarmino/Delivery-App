@@ -7,27 +7,20 @@ import converteEmReal from '../../helper/moneyConverter';
 import styles from '../../styles/orders.module.css';
 import request from '../../services/getApi';
 
-import { Title, ContainerDetails, Table } from './Orders.styles';
-
-moment.locale('pt-br');
+import { Title, ContainerDetails, Table } from './styles';
 
 const DTIS = {
-  status: 'customer_order_details__element-order-details-label-delivery-status',
-  itemNumber: 'customer_order_details__element-order-table-item-number-',
-  itemName: 'customer_order_details__element-order-table-name-',
-  quantity: 'customer_order_details__element-order-table-quantity-',
-  price: 'customer_order_details__element-order-table-unit-price-',
-  subTotal: 'customer_order_details__element-order-table-sub-total-',
+  itemNumber: 'seller_order_details__element-order-table-item-number-',
+  itemName: 'seller_order_details__element-order-table-name-',
+  quantity: 'seller_order_details__element-order-table-quantity-',
+  price: 'seller_order_details__element-order-table-unit-price-',
+  subTotal: 'seller_order_details__element-order-table-sub-total-',
 };
 
-export default function Orders() {
+export default function SellerOrdersDetails() {
   const [order, setOrder] = useState();
   const [ordStatus, setOrdStatus] = useState();
   const { id } = useParams();
-
-  const marcarEntregue = () => {
-    setOrdStatus('ENTREGUE');
-  };
 
   useEffect((() => {
     const requestDetails = async () => {
@@ -41,31 +34,32 @@ export default function Orders() {
 
   return (
     <div>
-      <Header labelNav="PRODUTOS" />
+      <Header labelNav="PEDIDOS" />
       <Title>Detalhe do Pedido</Title>
-      <ContainerDetails className="styles.details">
-        <p data-testid="customer_order_details__element-order-details-label-order-id">
+      <ContainerDetails className={ styles.details }>
+        <p data-testid="seller_order_details__element-order-details-label-order-id">
           {order ? order.sale.id : '01'}
         </p>
-        <p data-testid="customer_order_details__element-order-details-label-seller-name">
-          {order ? order.seller.name : 'Vendedor'}
-        </p>
-        <p data-testid="customer_order_details__element-order-details-label-order-date">
+        <p data-testid="seller_order_details__element-order-details-label-order-date">
           {order ? moment().format('DD/MM/YYYY', order.sale.saleDate) : '30/09/2022'}
         </p>
         <p
-          data-testid={ DTIS.status }
+          data-testid="seller_order_details__element-order-details-label-delivery-status"
         >
           {ordStatus}
         </p>
         <Button
-          label="MARCAR COMO ENTREGUE"
-          onClick={ marcarEntregue }
+          label="PREPARAR PEDIDO"
           disabled
-          id="customer_order_details__button-delivery-check"
-          className={ styles.btn_del }
+          id="seller_order_details__button-preparing-check"
+        />
+        <Button
+          label="SAIU PARA ENTREGA"
+          disabled
+          id="seller_order_details__button-dispatch-check"
         />
       </ContainerDetails>
+
       <Table>
         <thead>
           <tr>
@@ -111,11 +105,11 @@ export default function Orders() {
       </Table>
 
       <div
-        className={ styles.btnTotalItens }
-        data-testid="customer_order_details__element-order-total-price"
+        data-testid="seller_order_details__element-order-total-price"
       >
         <p>{converteEmReal(order ? order.sale.totalPrice : 'R$ 10.00')}</p>
       </div>
+
     </div>
   );
 }

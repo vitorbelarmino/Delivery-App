@@ -11,7 +11,7 @@ function Adm() {
   const { users, setUsers } = useContext(context);
 
   const actionDelete = async (id) => {
-    console.log(id);
+    console.log(typeof id, id);
     const customers = await getUsersByRole('user/customer') || [];
     const sellers = await getUsersByRole('user/seller') || [];
     const allUsers = [...customers, ...sellers];
@@ -23,6 +23,7 @@ function Adm() {
       const customers = await getUsersByRole('user/customer') || [];
       const sellers = await getUsersByRole('user/seller') || [];
       const allUsers = [...customers, ...sellers];
+      console.log(allUsers);
       setUsers(allUsers);
     };
 
@@ -94,7 +95,7 @@ function Adm() {
                       `admin_manage__element-user-table-remove-${index}`
                     }
                     className={ styles.btn_del }
-                    value={ id.toString() }
+                    value={ id }
                   />
                 </td>
               </tr>
