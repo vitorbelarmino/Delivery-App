@@ -27,7 +27,7 @@ function Checkout() {
   return (
 
     <div className={ styles.checkout_container }>
-      <Header />
+      <Header labelNav="PRODUTOS" />
       <div className={ styles.legend }>Finalizar Pedido</div>
 
       <table>

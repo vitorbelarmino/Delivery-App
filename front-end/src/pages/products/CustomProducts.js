@@ -23,7 +23,7 @@ function CustomProducts() {
 
   return (
     <section className={ styles.container_products }>
-      <Header />
+      <Header labelNav="PRODUTOS" />
       <section className={ styles.card_container }>
         {
           data && data.map((item) => (

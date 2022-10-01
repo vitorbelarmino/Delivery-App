@@ -1,35 +1,43 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import context from '../../context/index';
 import styles from '../../styles/header.module.css';
-import { getNameUser } from '../../services/login.storage';
+import { getNameUser, dataUser } from '../../services/login.storage';
+import redirection from '../../helper/redirection';
 import { Button } from '..';
 
-function Header() {
+function Header({ labelNav }) {
   const navigate = useNavigate();
+  const { role } = dataUser() || '';
   const { activePage } = useContext(context);
+
+  const goTo = redirection(dataUser().role);
 
   return (
     <nav className={ styles.header }>
       <Button
-        label="PRODUTOS"
+        label={ labelNav }
         typeButton="button"
         id="customer_products__element-navbar-link-products"
-        onClick={ () => navigate('/products') }
+        onClick={ () => navigate(goTo) }
         className=""
         addClass={ activePage === 'PRODUTOS' }
       />
       <Button
-        label="MEUS PEDIDOS"
+        label={ role === 'customer' ? 'MEUS PEDIDOS' : '' }
         typeButton="button"
         id="customer_products__element-navbar-link-orders"
         onClick={ () => navigate('/orders') }
+        disabled={ role !== 'customer' }
       />
       <Button
         label={ getNameUser() || '' }
         typeButton="button"
         id="customer_products__element-navbar-user-full-name"
-        onClick={ () => navigate('/orders') }
+        onClick={ () => {} }
+        disabled
+
       />
       <Button
         label="SAIR"
@@ -41,5 +49,9 @@ function Header() {
     </nav>
   );
 }
+
+Header.propTypes = {
+  labelNav: PropTypes.string.isRequired,
+};
 
 export default Header;
