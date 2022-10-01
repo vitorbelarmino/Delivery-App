@@ -7,6 +7,8 @@ import converteEmReal from '../../helper/moneyConverter';
 import styles from '../../styles/orders.module.css';
 import request from '../../services/getApi';
 
+import { Title, ContainerDetails, Table } from './Orders.styles';
+
 moment.locale('pt-br');
 
 const DTIS = {
@@ -29,6 +31,7 @@ export default function Orders() {
 
   useEffect((() => {
     const requestDetails = async () => {
+      console.log(id);
       const data = await request(`sale/${id}`);
       setOrder(data);
       setOrdStatus(data.sale.status);
@@ -39,15 +42,13 @@ export default function Orders() {
   return (
     <div>
       <Header />
-      <div className="title">Detalhe do Pedido</div>
-      <div className="styles.details">
+      <Title>Detalhe do Pedido</Title>
+      <ContainerDetails className="styles.details">
         <p data-testid="customer_order_details__element-order-details-label-order-id">
-          Pedido
-          {' '}
-          {order ? `PEDIDO 000${order.sale.deliveryNumber}` : '0001'}
+          {order ? order.sale.id : '01'}
         </p>
         <p data-testid="customer_order_details__element-order-details-label-seller-name">
-          {order ? `P. Vend: ${order.seller.name}` : 'Vendedor'}
+          {order ? order.seller.name : 'Vendedor'}
         </p>
         <p data-testid="customer_order_details__element-order-details-label-order-date">
           {order ? moment().format('DD/MM/YYYY', order.sale.saleDate) : '30/09/2022'}
@@ -60,12 +61,12 @@ export default function Orders() {
         <Button
           label="MARCAR COMO ENTREGUE"
           onClick={ marcarEntregue }
-          disabled={ false }
+          disabled
           id="customer_order_details__button-delivery-check"
           className={ styles.btn_del }
         />
-      </div>
-      <table>
+      </ContainerDetails>
+      <Table>
         <thead>
           <tr>
             <th>Item</th>
@@ -107,7 +108,7 @@ export default function Orders() {
               </tr>
             ))}
         </tbody>
-      </table>
+      </Table>
 
       <div
         className={ styles.btnTotalItens }
