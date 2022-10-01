@@ -6,6 +6,9 @@ import { Button, Input } from '../../components';
 import loginService from '../../services/login.service';
 // funcao para validar o e-mail
 import { validEmail, validPassword } from '../../helper/validFields';
+// dataUser
+import { dataUser } from '../../services/login.storage';
+import redirection from '../../helper/redirection';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -27,7 +30,9 @@ export default function Login() {
         setErro(response.error);
       } else {
         setErro();
-        navigate('/customer/products');
+        // redireciona para a tela correspondente de acordo com o role
+        const goTo = redirection(dataUser().role);
+        navigate(goTo);
       }
     });
   };

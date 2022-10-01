@@ -5,7 +5,7 @@ export function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.removeItem('produtos');
+    localStorage.removeItem('carrinho');
     navigate('/login');
   });
 
