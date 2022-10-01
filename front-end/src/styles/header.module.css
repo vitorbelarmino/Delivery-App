@@ -42,7 +42,7 @@
 
 .header button:nth-child( 3 ) {
   background-color: #421981;
-  cursor:default;
+  cursor: default;
   flex-grow: 0.4;
 }
 
