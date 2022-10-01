@@ -34,8 +34,8 @@ thead tr th {
   padding: 18px;
 }
 
-.btn_del {
-  background-color: rgb(250, 5, 5);
+.btn_entregue {
+  background-color: rgb(49, 160, 21);
   border: none;
   color: white;
   cursor: pointer;
