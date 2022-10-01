@@ -21,6 +21,7 @@ router.post('/login', validateLogin, loginController)
   .get('/sales', sale.allUserSales)
   .get('/sale/:id', sale.saleById)
   .put('/sale/:id', validateStatus, sale.statusUpdate)
-  .get('/user/:role', userController.getUserByRole);
+  .get('/user/:role', userController.getUserByRole)
+  .delete('/user/:id', userController.excludeById);
 
 module.exports = router;

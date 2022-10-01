@@ -7,6 +7,13 @@ const getUserByRole = async (req, res) => {
   res.status(StatusCodes.OK).json(users);
 };
 
+const excludeById = async (req, res) => {
+  const { id } = req.params;
+  const message = await userService.excludeById(Number(id));
+  res.status(StatusCodes.OK).json(message); 
+};
+
 module.exports = {
   getUserByRole,
+  excludeById,
 };
