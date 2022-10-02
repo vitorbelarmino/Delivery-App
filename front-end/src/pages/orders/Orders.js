@@ -43,7 +43,7 @@ export default function Orders() {
     <div>
       <Header labelNav="PRODUTOS" />
       <Title>Detalhe do Pedido</Title>
-      <ContainerDetails className="styles.details">
+      <ContainerDetails className={ styles.details }>
         <p data-testid="customer_order_details__element-order-details-label-order-id">
           {order ? order.sale.id : '01'}
         </p>

@@ -1,0 +1,17 @@
+.container_mySales {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 80px;
+  width: 80%;
+}
+
+.no_sales {
+  align-items: center;
+  color: black;
+  display: flex;
+  font-size: 25px;
+  font-weight: 600;
+  justify-content: center;
+}

@@ -48,9 +48,25 @@ const allUserSales = async (name) => {
   return allSales;
 };
 
+const allSalesSellerById = async (id) => {
+  const seller = await Users.findOne({ where: { id } });   
+  if (!seller) throw new CustomError(StatusCodes.BAD_REQUEST, 'Vendedor não localizado');
+  const allSales = await Sales.findAll({ where: { sellerId: id } });
+  return allSales;
+};
+
+const allOrdersCustomerById = async (id) => {
+  const user = await Users.findOne({ where: { id } });
+  if (!user) throw new CustomError(StatusCodes.BAD_REQUEST, 'Usuário não cadastrado');
+  const allOrders = await Sales.findAll({ where: { userIdd: id } });
+  return allOrders;
+};
+
 module.exports = {
   createSale,
   saleById,
   statusUpdate,
   allUserSales,
+  allSalesSellerById,
+  allOrdersCustomerById,
 };
