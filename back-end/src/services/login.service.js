@@ -9,7 +9,7 @@ const loginService = async (email, password) => {
   const user = await Users.findOne({ where: { email, password: encryptedPassword } });
   if (!user) throw new CustomError(StatusCodes.NOT_FOUND, 'Email ou senha incorretos');
 
-  const { id, password: pwd, ...userWithoutPassword } = user.dataValues;
+  const { password: pwd, ...userWithoutPassword } = user.dataValues;
   const token = createToken(userWithoutPassword);
   return { ...userWithoutPassword, token };
 };

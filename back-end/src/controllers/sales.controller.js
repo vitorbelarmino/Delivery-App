@@ -27,9 +27,23 @@ const allUserSales = async (req, res) => {
   res.status(StatusCodes.OK).json(allSales);
 };
 
+const allSalesSellerById = async (req, res) => {
+  const { id } = req.body;
+  const allSales = await saleService.allSalesSellerById(id);
+  res.status(StatusCodes.OK).json(allSales);
+};
+
+const allOrdersCustomerById = async (req, res) => {
+  const { id } = req.body;
+  const allSales = await saleService.allOrdersCustomerById(id);
+  res.status(StatusCodes.OK).json(allSales);
+};
+
 module.exports = {
   createSale,
   saleById,
   statusUpdate,
   allUserSales,
+  allSalesSellerById,
+  allOrdersCustomerById,
 };
