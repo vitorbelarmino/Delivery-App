@@ -1,9 +1,10 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import context from '../../context/index';
 import styles from '../../styles/adm.module.css';
 import { Button, Input, Select } from '..';
 import getUsersByRole from '../../services/getApi';
 import sendUser from '../../services/register.service';
+import { validEmail, validPassword, validName } from '../../helper/validFields';
 
 function ItemUser() {
   const [name, setName] = useState('');
@@ -11,6 +12,7 @@ function ItemUser() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('customer');
   const [erro, setErro] = useState('');
+  const [buttonState, setButtonState] = useState(true);
   const { setUsers } = useContext(context);
 
   // select tipo de usuario
@@ -55,6 +57,26 @@ function ItemUser() {
     clearFields();
     updateTableUsers();
   };
+
+  useEffect(() => {
+    function validate() {
+      const minNumber = 6;
+      const minName = 12;
+      if (
+        validEmail(email)
+        && validPassword(password, minNumber)
+        && validName(name, minName)) {
+        // habilita o botao de login
+        setButtonState(false);
+        setErro();
+        return;
+      }
+
+      setErro('Dados inválidos !');
+      setButtonState(true);
+    }
+    validate();
+  }, [name, email, password]);
 
   return (
     <section className={ styles.container_adm }>
@@ -104,7 +126,7 @@ function ItemUser() {
           typeButton="submit"
           label="Cadastrar"
           onClick={ () => registerUser() }
-          disabled={ false }
+          disabled={ buttonState }
           id="admin_manage__button-register"
           className={ styles.btn_finish }
           src=""

@@ -6,12 +6,13 @@ import styles from '../../styles/checkout.module.css';
 import { Button } from '../../components';
 import ItemUser from '../../components/group/ItemUser';
 import getUsersByRole from '../../services/getApi';
+import deleteUser from '../../services/adm.service';
 
 function Adm() {
   const { users, setUsers } = useContext(context);
 
   const actionDelete = async (id) => {
-    console.log(typeof id, id);
+    await deleteUser(id);
     const customers = await getUsersByRole('user/customer') || [];
     const sellers = await getUsersByRole('user/seller') || [];
     const allUsers = [...customers, ...sellers];
@@ -23,7 +24,6 @@ function Adm() {
       const customers = await getUsersByRole('user/customer') || [];
       const sellers = await getUsersByRole('user/seller') || [];
       const allUsers = [...customers, ...sellers];
-      console.log(allUsers);
       setUsers(allUsers);
     };
 
@@ -95,7 +95,7 @@ function Adm() {
                       `admin_manage__element-user-table-remove-${index}`
                     }
                     className={ styles.btn_del }
-                    value={ id }
+                    value={ id.toString() }
                   />
                 </td>
               </tr>

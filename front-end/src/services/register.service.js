@@ -1,8 +1,11 @@
-import { saveDataUser } from './login.storage';
+import { saveDataUser, getToken } from './login.storage';
 
 async function useRegister(data) {
   const config = {
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: getToken(),
+    },
     body: JSON.stringify({ ...data }),
     method: 'POST',
   };
