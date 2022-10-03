@@ -1,10 +1,11 @@
-import { getToken } from './login.storage';
+import { dataUser } from './login.storage';
 
 export default async function saveOrder(data) {
+  const token = dataUser();
   const config = {
     headers: {
       'Content-Type': 'application/json',
-      authorization: getToken(),
+      authorization: token.token,
     },
     body: JSON.stringify(data),
     method: 'POST',

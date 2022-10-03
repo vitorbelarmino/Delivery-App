@@ -38,6 +38,13 @@ export default function Login() {
   };
 
   useEffect(() => {
+    if (dataUser().role) {
+      const goTo = redirection(dataUser().role);
+      navigate(goTo);
+    }
+  });
+
+  useEffect(() => {
     function validate() {
       const minNumber = 6;
       if (validEmail(email) && validPassword(password, minNumber)) {
@@ -49,7 +56,7 @@ export default function Login() {
       setButtonState(true);
     }
     validate();
-  }, [email, password]);
+  }, [email, password, navigate]);
 
   return (
     <main className={ styles.main_container }>

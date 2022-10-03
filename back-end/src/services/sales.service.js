@@ -58,7 +58,7 @@ const allSalesSellerById = async (id) => {
 const allOrdersCustomerById = async (id) => {
   const user = await Users.findOne({ where: { id } });
   if (!user) throw new CustomError(StatusCodes.BAD_REQUEST, 'Usuário não cadastrado');
-  const allOrders = await Sales.findAll({ where: { userIdd: id } });
+  const allOrders = await Sales.findAll({ where: { userId: id } });
   return allOrders;
 };
 
