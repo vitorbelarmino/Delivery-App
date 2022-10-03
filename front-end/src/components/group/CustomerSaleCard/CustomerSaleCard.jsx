@@ -1,9 +1,16 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import { Container, DataContainer, StatusBtn } from './styles';
 
 export default function CustomerSaleCard({ id, status, data, total }) {
+  const navigate = useNavigate();
+
+  const redirectDetails = () => {
+    navigate(`/customer/orders/${id}`);
+  };
+
   return (
-    <Container>
+    <Container onClick={ redirectDetails } role="presentation">
       <div data-testid={ `customer_orders__element-order-id-${id}` }>{id}</div>
       <StatusBtn data-testid={ `customer_orders__element-delivery-status-${id}` }>
         {status}
