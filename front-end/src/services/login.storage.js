@@ -5,7 +5,6 @@ export const tokenUser = () => (JSON.parse(localStorage.getItem(TOKEN))) || { to
 
 export const getToken = () => {
   const result = tokenUser();
-  console.log(dataUser(), 'datauser');
   if (result.token !== undefined) {
     return result.token;
   }

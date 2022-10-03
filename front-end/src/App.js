@@ -11,7 +11,7 @@ import CustomerOrders from './pages/customerOrders/CustomerOrders';
 
 import Adm from './pages/adm/Adm';
 import SellerOrdersDetails from './pages/sellerOrdersDetails/SellerOrdersDetails';
-import SellerOrders from './pages/orders/SellerOrders';
+import SellerOrders from './pages/sellerOrders/SellerOrders';
 
 function App() {
   return (
@@ -27,9 +27,7 @@ function App() {
       <Route exact path="/admin/manage" element={ <Adm /> } />
       <Route exact path="/seller/orders" element={ <SellerOrders /> } />
       <Route exact path="/seller/orders/:id" element={ <SellerOrdersDetails /> } />
-
     </Routes>
-
   );
 }
 
