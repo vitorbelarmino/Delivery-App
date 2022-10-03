@@ -28,7 +28,7 @@ function Header({ labelNav }) {
         label={ role === 'customer' ? 'MEUS PEDIDOS' : '' }
         typeButton="button"
         id="customer_products__element-navbar-link-orders"
-        onClick={ () => navigate('/orders') }
+        onClick={ () => navigate('/customer/orders') }
         disabled={ role !== 'customer' }
       />
       <Button

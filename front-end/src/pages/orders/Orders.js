@@ -81,7 +81,7 @@ export default function Orders() {
             && order.sale.products.map(({ name, SalesProducts, price }, index) => (
               <tr key={ index }>
                 <td
-                  ata-testid={ `${DTIS.itemNumber}${index}` }
+                  data-testid={ `${DTIS.itemNumber}${index}` }
                 >
                   {index + 1}
                 </td>
