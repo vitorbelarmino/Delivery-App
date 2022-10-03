@@ -36,7 +36,7 @@ export default function CustomerOrders() {
     };
     getOrders();
     console.log(data, '2');
-  }, []);
+  });
 
   return (
     <div>
