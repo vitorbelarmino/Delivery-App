@@ -5,11 +5,13 @@ import styles from '../../styles/ordersSale.module.css';
 import { dataUser, getToken } from '../../services/login.storage';
 import CustomerSaleCard from '../../components/group/CustomerSaleCard/CustomerSaleCard';
 import Main from './styles';
+import converteEmReal from '../../helper/moneyConverter';
 
 moment.locale('pt-br');
 
 //
 const user = dataUser();
+console.log(user);
 
 const config = {
   headers: {
@@ -20,24 +22,20 @@ const config = {
   method: 'POST',
 };
 
-export default function Orders() {
+export default function CustomerOrders() {
   const [data, setData] = useState([]);
-
+  console.log(data, '1');
   useEffect(() => {
     const getOrders = async () => {
-      try {
-        const END_POINT = 'http://localhost:3001/customer/orders';
-        const response = await fetch(END_POINT, { ...config });
-        const result = await response.json();
-        console.log(result);
-        if (!result.error) {
-          setData(result);
-        }
-      } catch (error) {
-        console.log(error);
+      const END_POINT = 'http://localhost:3001/customer/orders';
+      const response = await fetch(END_POINT, { ...config });
+      const result = await response.json();
+      if (!result.error) {
+        setData(result);
       }
     };
     getOrders();
+    console.log(data, '2');
   }, []);
 
   return (
@@ -52,7 +50,7 @@ export default function Orders() {
                 id={ item.id }
                 status={ item.status }
                 data={ moment().format('DD/MM/YYYY', item.saleDate) }
-                total={ item.totalPrice }
+                total={ converteEmReal(item.totalPrice) }
               />))
             : (<div className={ styles.no_sales }>Não possui pedidos !</div>)
         }
