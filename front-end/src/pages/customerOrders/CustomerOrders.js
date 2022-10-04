@@ -28,6 +28,7 @@ export default function CustomerOrders() {
       const END_POINT = 'http://localhost:3001/customer/orders';
       const response = await fetch(END_POINT, { ...config });
       const result = await response.json();
+      console.log(result);
       if (!result.error) {
         setData(result);
       }

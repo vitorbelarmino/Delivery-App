@@ -8,22 +8,22 @@ import SellerSaleCard from '../../components/group/SellerSaleCard/SellerSaleCard
 
 moment.locale('pt-br');
 
-const user = dataUser();
-
-const config = {
-  headers: {
-    'Content-Type': 'application/json',
-    authorization: getToken(),
-  },
-  body: JSON.stringify({ id: user.id }),
-  method: 'POST',
-};
-
 export default function SellerOrders() {
+  const { id } = dataUser();
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const getOrders = async () => {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: getToken(),
+        },
+        body: JSON.stringify({ id }),
+        method: 'POST',
+      };
+
       const END_POINT = 'http://localhost:3001/sellers/sales';
       const response = await fetch(END_POINT, { ...config });
       const result = await response.json();
@@ -32,7 +32,8 @@ export default function SellerOrders() {
       }
     };
     getOrders();
-  });
+    return (() => {});
+  }, [id]);
 
   return (
     <div>

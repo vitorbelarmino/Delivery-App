@@ -13,9 +13,9 @@ const registerService = async (name, email, password, role = 'customer') => {
 
   const encryptedPassword = md5(password);
   
-  await Users.create({ name, email, password: encryptedPassword, role });
+  const {id} = await Users.create({ name, email, password: encryptedPassword, role });
   const token = createToken({ name, email, password, role });
-  return { name, email, role, token };
+  return { name, email, role, token, id };
 };
 
 module.exports = { registerService };
