@@ -42,7 +42,9 @@ export default function Login() {
       const goTo = redirection(dataUser().role);
       navigate(goTo);
     }
-  });
+
+    return (() => {});
+  }, [navigate]);
 
   useEffect(() => {
     function validate() {

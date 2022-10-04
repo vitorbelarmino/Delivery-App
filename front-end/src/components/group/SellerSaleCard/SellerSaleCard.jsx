@@ -13,7 +13,7 @@ export default function SellerSaleCard({ id, status, data, total, address }) {
     <Container onClick={ redirectDetails } role="presentation">
       <div data-testid={ `seller_orders__element-order-id-${id}` }>{id}</div>
       <InsideContainer>
-        <StatusBtn data-testid={ `seller_orders__element-delivery-status-${id}` }>
+        <StatusBtn data-testid={ `seller_orders__element-order-status-${id}` }>
           {status}
         </StatusBtn>
         <DataContainer>
