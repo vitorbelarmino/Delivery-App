@@ -28,6 +28,49 @@ O Back-end foi desenvolvido por mim, usando as seguintes tecnologias:
 
 ## ⬇️ Como executar o projeto
 
+```bash
+
+# Clone este repositório
+$ git clone git@github.com:vitorbelarmino/Delivery-App.git
+
+# Acesse a pasta do projeto no terminal/cmd
+$ cd Delivery-App
+
+# Instale as dependências
+$ npm install
+
+# Suba o banco de dados com Docker
+$ npm run db:up
+
+# dentro da pasta back-end, retire o ".example" do arquivo ".env.example", para ter as variáveis de ambientes necessarias para o funcinamento do App.
+
+# Execute a aplicação
+$ npm start
+
+# O App inciará na porta:3000 - acesse http://localhost:3000
+```
+
+## 📌 Habilidades
+
+Nesse projeto, fui capaz de:
+
+- Aprimorar minhas habilidades em React
+- Aprimorar minhas habilidades com o Sass
+- Aprimorar minhas habilidades com o ContexApi
+- Aprimorar minhas habilidades com TypeScript
+- Aprender a utilizar o axios para fazer solicitações a API
+- Aprimorar minha organização de código
+
+</br>
+
+## 📝 Ajustes e melhorias
+
+O projeto possui melhorias pendentes, e possíveis atualizações serão voltadas nas seguintes tarefas:
+
+- [ ] Adicionar adicionar paginação quando entra em últimos episódio ou últimos animes
+- [ ] adicionar login de usuário
+- [ ] adicionar responsividade
+- [ ] Desenvolvedor testes unitários para a aplicação
 
 
 > Github: https://github.com/vitorbelarmino
