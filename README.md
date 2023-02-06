@@ -42,7 +42,8 @@ $ npm install
 # Suba o banco de dados com Docker
 $ npm run db:up
 
-# dentro da pasta back-end, retire o ".example" do arquivo ".env.example", para ter as variáveis de ambientes necessarias para o funcinamento do App.
+# dentro da pasta back-end, retire o ".example" do arquivo ".env.example",
+para ter as variáveis de ambientes necessarias para o funcinamento do App.
 
 # Execute a aplicação
 $ npm start
