@@ -18,6 +18,7 @@ O Front-end foi desenvolvido por Fabiano e Igor
 Back-end:
 O Back-end foi desenvolvido por mim, usando as seguintes tecnologias:
 - Node.js
+- JavaScript
 - Express
 - Joi
 - JWT
