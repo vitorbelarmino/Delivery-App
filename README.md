@@ -1,4 +1,4 @@
-# Devivey App
+# Delivery App
 
 
 ## 💻 Projeto
