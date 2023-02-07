@@ -3,7 +3,7 @@
 
 ## 💻 Projeto
 
- É um app de delivery para uma distribuidora de bebidas desenvolvido em grupo em colaboração com [fabiano Faustino](https://github.com/fabianojustino) e [Igor Mazetti](https://github.com/Igormazetti), que possui alguns revenderores. O usuario poderá adicionar itens ao carrinho, adicionar o endereço da entrega, efetuar a compra e após receber os produtos, adicionar o status do pedido como entregue. O vendedor ira aprovar, preparar e entregar.
+ É um app de delivery para uma distribuidora de bebidas desenvolvido em grupo em colaboração com [Fabiano Faustino](https://github.com/fabianojustino) e [Igor Mazetti](https://github.com/Igormazetti), que possui alguns revenderores. O usuário poderá adicionar itens ao carrinho, adicionar o endereço da entrega, efetuar a compra e após receber os produtos, adicionar o status do pedido como entregue. O vendedor irá aprovar, preparar e entregar.
 
 </br>
 
@@ -42,7 +42,7 @@ $ npm install
 # Suba o banco de dados com Docker
 $ npm run db:up
 
-# dentro da pasta back-end, retire o ".example" do arquivo ".env.example", para ter as variáveis de ambientes necessarias para o funcinamento do App.
+# dentro da pasta back-end, retire o ".example" do arquivo ".env.example", para ter as variáveis de ambientes necessárias para o funcinamento do App.
 
 # Execute a aplicação
 $ npm start
