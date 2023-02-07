@@ -3,7 +3,7 @@
 
 ## 💻 Projeto
 
-  Um app de delivery para uma distribuidora de bebidas desenvolvido em grupo em colaboração com [Fabiano Faustino](https://github.com/fabianojustino) e [Igor Mazetti](https://github.com/Igormazetti), que possui alguns revenderores. O usuário poderá adicionar itens ao carrinho, adicionar o endereço da entrega, efetuar a compra e após receber os produtos, adicionar o status do pedido como entregue. O vendedor irá aprovar, preparar e entregar.
+  Um app de delivery para uma distribuidora de bebidas, que possui alguns revenderores, desenvolvido em grupo em colaboração com [Fabiano Faustino](https://github.com/fabianojustino) e [Igor Mazetti](https://github.com/Igormazetti). O usuário poderá adicionar itens ao carrinho, adicionar o endereço da entrega, efetuar a compra e após receber os produtos, adicionar o status do pedido como entregue. O vendedor irá aprovar, preparar e entregar.
 
 </br>
 
